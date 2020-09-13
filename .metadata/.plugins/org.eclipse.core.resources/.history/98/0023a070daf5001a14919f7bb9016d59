@@ -1,0 +1,45 @@
+package Klase;
+
+public class KorisnickiNalog {
+
+	private String korIme;
+	private String lozinka;
+	private TipKorisnika vrstaKorisnika;
+	private Osoba korisnik;		//veza 1..1 prema Osobi
+	
+	public String getKorIme() {
+		return korIme;
+	}
+	public void setKorIme(String korIme) {
+		this.korIme = korIme;
+	}
+	
+	public String getLozinka() {
+		return lozinka;
+	}
+	public void setLozinka(String lozinka) {
+		this.lozinka = lozinka;
+	}
+	
+	public TipKorisnika getVrstaKorisnika() {
+		return vrstaKorisnika;
+	}
+	public void setVrstaKorisnika(TipKorisnika vrstaKorisnika) {
+		this.vrstaKorisnika = vrstaKorisnika;
+	}
+	
+	public Osoba getKorisnik() {
+		return korisnik;
+	}
+	public void setKorisnik(Osoba korisnik) {
+		this.korisnik = korisnik;
+	}
+	
+	
+	public void brisanjeProfila() {
+		//telo funkcije, brisi komentare, recepte, njega iz liste
+	}
+	
+	
+	
+}

@@ -1,0 +1,40 @@
+package Klase;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class Sastojak {
+	private String naziv;
+	private List<Sastojak>zamjenski;
+	private List<Kolicina>kolicine; //da bi znao u kojim se receptima nalazi
+	//dodavanje kolicine 
+	//napraviti metodu getrecepti
+	public Sastojak() {
+		naziv = "";
+		zamjenski = new ArrayList<Sastojak>();
+		kolicine = new ArrayList<Kolicina>();
+	}
+	public String getNaziv() {
+		return naziv;
+	}
+	public void setNaziv(String naziv) {
+		this.naziv = naziv;
+	}
+	public List<Sastojak> getZamjenski() {
+		return Collections.unmodifiableList(zamjenski);
+	}
+	public void setZamjenski(List<Sastojak> zamjenski) {
+		this.zamjenski = zamjenski;
+	}
+	public List<Kolicina> getKolicine() {
+		return kolicine;
+	}
+	public void setKolicine(List<Kolicina> kolicine) {
+		this.kolicine = kolicine;
+	}
+	
+	
+	
+	
+}

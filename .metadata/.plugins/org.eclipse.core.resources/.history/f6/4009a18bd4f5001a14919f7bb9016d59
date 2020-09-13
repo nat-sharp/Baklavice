@@ -1,0 +1,27 @@
+package Klase;
+
+import java.time.LocalDate;
+import java.util.Collections;
+import java.util.List;
+
+public class TopListaKreatora {
+	private LocalDate datum;
+	private List<KorisnickiNalog>korisnici;
+	
+	
+	
+	public LocalDate getDatum() {
+		return datum;
+	}
+	public void setDatum(LocalDate datum) {
+		this.datum = datum;
+	}
+	public List<KorisnickiNalog> getKorisnici() {
+		return Collections.unmodifiableList(korisnici);
+	}
+	public void setKorisnici(List<KorisnickiNalog> korisnici) {
+		this.korisnici = korisnici;
+	}
+	
+	
+}
