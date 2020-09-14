@@ -33,7 +33,7 @@ public class PlatformaZaKuvare {
 		
 	}
 	
-	public List<Recept> pretraga(List<Alati>kuhinjskaOprema, String naziv, Tezina tezina, int duzina, List<Sastojak>sastojci){
+	public List<Recept> pretraga(List<Alat>kuhinjskaOprema, String naziv, Tezina tezina, int duzina, List<Sastojak>sastojci){
 		
 		return null;
 		

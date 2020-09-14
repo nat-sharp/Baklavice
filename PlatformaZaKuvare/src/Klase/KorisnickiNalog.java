@@ -19,7 +19,7 @@ public class KorisnickiNalog {
 	private List<Recept> obelezeniRecepti;	//veza 0..* ka receptima = obelezeni
 	private List<Ocena> ocenjeniRecepti;	//da li ce imati listu ovu? ili ide preko asocijativne klase?
 	private List<Sastojak> sastojci;
-	private List<Alati> kuhinjskiAlati;
+	private List<Alat> kuhinjskiAlati;
 	
 	
 	public KorisnickiNalog() {
@@ -30,7 +30,7 @@ public class KorisnickiNalog {
 		this.obelezeniRecepti = new ArrayList<Recept>();
 		this.ocenjeniRecepti = new ArrayList<Ocena>();
 		this.sastojci = new ArrayList<Sastojak>();
-		this.kuhinjskiAlati = new ArrayList<Alati>();
+		this.kuhinjskiAlati = new ArrayList<Alat>();
 	}
 	
 	
@@ -130,16 +130,16 @@ public class KorisnickiNalog {
 		return ocenjeniRecepti.remove(o);
 	}
 	
-	public List<Alati> getKuhinjskiAlati() {
+	public List<Alat> getKuhinjskiAlati() {
 		return Collections.unmodifiableList(kuhinjskiAlati);
 	}
-	public void setKuhinjskiAlati(ArrayList<Alati> kuhinjskiAlati) {
+	public void setKuhinjskiAlati(ArrayList<Alat> kuhinjskiAlati) {
 		this.kuhinjskiAlati = kuhinjskiAlati;
 	}
-	public void dodajAlat(Alati a) {
+	public void dodajAlat(Alat a) {
 		this.kuhinjskiAlati.add(a);
 	}
-	public boolean izbrisiAlat(Alati a) {
+	public boolean izbrisiAlat(Alat a) {
 		return this.kuhinjskiAlati.remove(a);
 	}
 	
@@ -147,7 +147,7 @@ public class KorisnickiNalog {
 	
 	//gde su parametriii???
 	public boolean kreirajRecept(String naziv, String opis, Tezina t, int brMin, String imgPut, String vidPut, 
-			ArrayList<Kategorija> kat, ArrayList<Alati> alati, ArrayList<Kolicina> kolicine) {
+			ArrayList<Kategorija> kat, ArrayList<Alat> alati, ArrayList<Kolicina> kolicine) {
 		for (Recept r : this.autorskiRecepti) if (r.getNazivRec().equals(naziv)) return false;
 		Recept rec = new Recept();
 		rec.setNazivRec(naziv);
@@ -164,7 +164,7 @@ public class KorisnickiNalog {
 
 	//sta menjaaas????
 	public boolean izmeniRecept(Recept rec, String naziv, String opis, Tezina t, int brMin, String imgPut, String vidPut, 
-			ArrayList<Kategorija> kat, ArrayList<Alati> alati, ArrayList<Kolicina> kolicine) {
+			ArrayList<Kategorija> kat, ArrayList<Alat> alati, ArrayList<Kolicina> kolicine) {
 		if (naziv != null) for (Recept r : this.autorskiRecepti) if (r.getNazivRec().equals(naziv)) return false;	//provera da li ime postoji
 		if (naziv != null) rec.setNazivRec(naziv);
 		if (brMin != 0) rec.setDuzinaMin(brMin);

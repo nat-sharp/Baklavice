@@ -1,3 +1,3 @@
-INDEX VERSION 1.131+D:\4semestar\Specifikacijaimodeliranjesoftvera\.metadata\.plugins\org.eclipse.jdt.core
+INDEX VERSION 1.131+C:\Users\Jovovic\Desktop\Projekat\Baklavice\.metadata\.plugins\org.eclipse.jdt.core
 1671692264.index
 2486923512.index
