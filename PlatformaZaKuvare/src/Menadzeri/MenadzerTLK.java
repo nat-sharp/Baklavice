@@ -22,7 +22,12 @@ public class MenadzerTLK {
 		return instanca;
 	}
 	
+	
 	public List<TopListaKreatora> getTopListeKreatora() {
+		return topListeKreatora;
+	}
+	
+	public List<TopListaKreatora> getNepromenljiveTopListeKreatora() {
 		return Collections.unmodifiableList(topListeKreatora);
 	}
 	public void setTopListeKreatora(ArrayList<TopListaKreatora> topListeKreatora) {

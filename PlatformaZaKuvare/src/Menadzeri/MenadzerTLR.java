@@ -22,9 +22,15 @@ public class MenadzerTLR {
 		return instanca;
 	}
 	
-	public List<TopListaRecepata> getTopListeKreatora() {
+	public List<TopListaRecepata> getNeTopListeKreatora() {
 		return Collections.unmodifiableList(topListeRecepata);
 	}
+	
+	
+	public List<TopListaRecepata> getTopListeRecepata() {
+		return topListeRecepata;
+	}
+	
 	public void setTopListeKreatora(ArrayList<TopListaRecepata> topListeR) {
 		this.topListeRecepata = topListeR;
 	}
