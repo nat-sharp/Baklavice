@@ -33,7 +33,7 @@ public class PlatformaZaKuvare {
 
 	public static PlatformaZaKuvare getInstance() {
 		if(instance == null) {
-			return new PlatformaZaKuvare();
+			instance = new PlatformaZaKuvare();
 		}
 		return instance;
 	}
