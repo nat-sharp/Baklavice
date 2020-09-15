@@ -8,6 +8,14 @@ public class Kolicina {
 	private Recept recept;
 	
 	
+	public Kolicina(MernaJedinica mernaJedinica, int kolicina, boolean obavezan, Sastojak sastojak, Recept recept) {
+		this.mernaJedinica = mernaJedinica;
+		this.kolicina = kolicina;
+		this.obavezan = obavezan;
+		this.sastojak = sastojak;
+		this.recept = recept;
+	}
+	
 	
 	public Sastojak getSastojak() {
 		return sastojak;
@@ -38,6 +46,12 @@ public class Kolicina {
 	}
 	public void setObavezan(boolean obavezan) {
 		this.obavezan = obavezan;
+	}
+
+
+	@Override
+	public String toString() {
+		return kolicina + " " + this.mernaJedinica;
 	}
 	
 	

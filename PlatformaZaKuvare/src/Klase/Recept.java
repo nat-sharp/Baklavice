@@ -1,6 +1,7 @@
 package Klase;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Recept {
@@ -19,8 +20,8 @@ public class Recept {
 	private List<Kategorija> kategorije;
 	
 	public Recept() {
-		this.oprema = new ArrayList<Alat>();
 		this.nazivRec = "";
+		this.oprema = new ArrayList<Alat>();
 		this.opisPripreme = "";
 		this.duzinaMin = 0;
 		this.imgPath = "";
@@ -30,12 +31,11 @@ public class Recept {
 		this.kategorije = new ArrayList<Kategorija>();
 	}
 	
-	public Recept(List<Alat> oprema, String nazivRec, String opisPripreme, Tezina tezina, int duzinaMin, String imgPath,
+	public Recept(String nazivRec, List<Alat> oprema, String opisPripreme, Tezina tezina, int duzinaMin, String imgPath,
 			String videoLink, int brMedalja, KorisnickiNalog autor, Recenzija recenzija, List<Ocena> ocene,
 			List<Kolicina> kolicineSastojaka, List<Kategorija> kategorije) {
-		super();
-		this.oprema = oprema;
 		this.nazivRec = nazivRec;
+		this.oprema = oprema;
 		this.opisPripreme = opisPripreme;
 		this.tezina = tezina;
 		this.duzinaMin = duzinaMin;
@@ -48,14 +48,6 @@ public class Recept {
 		this.kolicineSastojaka = kolicineSastojaka;
 		this.kategorije = kategorije;
 	}
-
-	public List<Alat> getOprema() {
-		return oprema;
-	}
-	
-	public void setOprema(List<Alat> oprema) {
-		this.oprema = oprema;
-	}
 	
 	public String getNazivRec() {
 		return nazivRec;
@@ -63,6 +55,22 @@ public class Recept {
 	
 	public void setNazivRec(String nazivRec) {
 		this.nazivRec = nazivRec;
+	}
+
+	public List<Alat> getOprema() {
+		return Collections.unmodifiableList(oprema);
+	}
+	
+	public void setOprema(List<Alat> oprema) {
+		this.oprema = oprema;
+	}
+	
+	public void dodajAlat(Alat a) {
+		this.oprema.add(a);
+	}
+	
+	public boolean izbrisiAlat(Alat a) {
+		return this.oprema.remove(a);
 	}
 	
 	public String getOpisPripreme() {
@@ -130,26 +138,50 @@ public class Recept {
 	}
 	
 	public List<Ocena> getOcene() {
-		return ocene;
+		return Collections.unmodifiableList(ocene);
 	}
 	
 	public void setOcene(List<Ocena> ocene) {
 		this.ocene = ocene;
 	}
 	
+	public void dodajOcenu(Ocena o) {
+		this.ocene.add(o);
+	}
+	
+	public boolean izbrisiOcenu(Ocena o) {
+		return this.ocene.remove(o);
+	}
+	
 	public List<Kolicina> getKolicineSastojaka() {
-		return kolicineSastojaka;
+		return Collections.unmodifiableList(kolicineSastojaka);
 	}
 	
 	public void setKolicineSastojaka(List<Kolicina> kolicineSastojaka) {
 		this.kolicineSastojaka = kolicineSastojaka;
 	}
 	
+	public void dodajKolicinuSastojka(Kolicina ks) {
+		this.kolicineSastojaka.add(ks);
+	}
+	
+	public boolean izbrisiKolicinuSastojka(Kolicina ks) {
+		return this.kolicineSastojaka.remove(ks);
+	}
+	
 	public List<Kategorija> getKategorije() {
-		return kategorije;
+		return Collections.unmodifiableList(kategorije);
 	}
 	
 	public void setKategorije(List<Kategorija> kategorije) {
 		this.kategorije = kategorije;
+	}
+	
+	public void dodajKategoriju(Kategorija k) {
+		this.kategorije.add(k);
+	}
+	
+	public boolean izbrisiKategoriju(Kategorija k) {
+		return this.kategorije.remove(k);
 	}
 }

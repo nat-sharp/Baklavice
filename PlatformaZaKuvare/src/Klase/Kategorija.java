@@ -10,23 +10,39 @@ public class Kategorija {
 
 	private String nazivKat;
 	private String opis;
-	private ArrayList<KorisnickiNalog> pratioci;	//veza 0..*
-	private ArrayList<Recept> recepti;
-	//primjer, pokusavati kod kucee :P
-	private List<KorisnickiNalog>p;
+	private List<KorisnickiNalog> pratioci;	//veza 0..*
+	private List<Recept> recepti;
 	
-	private Kategorija() {
-		p = new ArrayList<KorisnickiNalog>();
+	//konstruktori
+	public Kategorija(String nazivKategorije, String opis) {
+		this.nazivKat = nazivKategorije;
+		this.opis = opis;
+		pratioci = new ArrayList<KorisnickiNalog>();
+		recepti = new ArrayList<Recept>();
 	}
-	public List<KorisnickiNalog> getP() {
-		return Collections.unmodifiableList(p);
-		//return (List<KorisnikKreator>) Collections.unmodifiableCollection(p);
-		
+	
+	public Kategorija(String nazivKategorije, String opis, List<KorisnickiNalog> pratioci, List<Recept> recepti) {
+		this.nazivKat = nazivKategorije;
+		this.opis = opis;
+		this.pratioci = pratioci;
+		this.recepti = recepti;
 	}
-	//pravi svuda gdje imamo arraylist
-
-
-
+	
+	
+	
+	public List<KorisnickiNalog> getPratioci() {
+		return Collections.unmodifiableList(pratioci);
+	}
+	public void setPratioci(List<KorisnickiNalog> pratioci) {
+		this.pratioci = pratioci;
+	}
+	
+	public void setRecepti(ArrayList<Recept> recepti) {
+		this.recepti = recepti;
+	}
+	public List<Recept> getRecepti() {
+		return Collections.unmodifiableList(recepti);
+	}
 
 	public String getNazivKat() {
 		return nazivKat;
@@ -41,32 +57,37 @@ public class Kategorija {
 	public void setOpis(String opis) {
 		this.opis = opis;
 	}
-	public ArrayList<KorisnickiNalog> getPratioci() {
-		return pratioci;
-	}
-	public void setPratioci(ArrayList<KorisnickiNalog> pratioci) {
-		this.pratioci = pratioci;
-	}
-	public ArrayList<Recept> getRecepti() {
-		return recepti;
-	}
-	public void setRecepti(ArrayList<Recept> recepti) {
-		this.recepti = recepti;
-	}
-	public void izbrisiRecept(Recept r) {}
-	
+		
 	
 	public void dodajPratioca(KorisnickiNalog k) {
 		this.pratioci.add(k);
 	}
-	
 	public boolean izbrisiPratioca(KorisnickiNalog k) {
-		return false;
-		//znaci provjeri da li postoji, ako postoji izbrisi i vrati true;
-		//ako ne postoji, vrati false
+		if(!this.pratioci.contains(k)) {
+			return false;
+		}
+		this.pratioci.remove(k);
+		return true;
 	}
 	
-	//liste treba da imaju dodajElement, izbrisiElement, readOnly verzija
+	
+	public void dodajRecept(Recept recept) {
+		this.recepti.add(recept);
+	}
+	public boolean izbrisiRecept(Recept recept) {
+		if(!this.recepti.contains(recept)) {
+			return false;
+		}
+		this.recepti.remove(recept);
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return nazivKat + ": " + opis;
+	}
+
+	
 	
 	
 	

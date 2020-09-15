@@ -1,0 +1,407 @@
+package Klase;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class KorisnickiNalog {
+	private String korIme;
+	private String lozinka;
+	private TipKorisnika vrstaKorisnika;	
+	private int brPratioca = 0;
+	private int brMedalja = 0;
+	private List<Alat> oprema;
+	private Osoba korisnik;
+	private List<KorisnickiNalog> praceniKorisnici;	
+	private List<Kategorija> praceneKategorije;
+	private List<Recept> obelezeniRecepti;	
+	private List<Recept> autorskiRecepti; //knjiga recepata korisnika		
+	private List<Ocena> ocenjeniRecepti;	
+	private List<Sastojak> sastojci;
+	
+	public KorisnickiNalog() {
+		this.korIme = "";
+		this.lozinka = "";
+		this.oprema = new ArrayList<Alat>();
+		this.praceniKorisnici = new ArrayList<KorisnickiNalog>();
+		this.praceneKategorije = new ArrayList<Kategorija>();
+		this.obelezeniRecepti = new ArrayList<Recept>();
+		this.autorskiRecepti = new ArrayList<Recept>();
+		this.ocenjeniRecepti = new ArrayList<Ocena>();
+		this.sastojci = new ArrayList<Sastojak>();
+	}
+	
+	public KorisnickiNalog(String korIme, String lozinka, TipKorisnika vrstaKorisnika, int brPratioca, int brMedalja,
+			List<Alat> oprema, Osoba korisnik, List<KorisnickiNalog> praceniKorisnici,
+			List<Kategorija> praceneKategorije, List<Recept> obelezeniRecepti, List<Recept> autorskiRecepti,
+			List<Ocena> ocenjeniRecepti, List<Sastojak> sastojci) {
+		this.korIme = korIme;
+		this.lozinka = lozinka;
+		this.vrstaKorisnika = vrstaKorisnika;
+		this.brPratioca = brPratioca;
+		this.brMedalja = brMedalja;
+		this.oprema = oprema;
+		this.korisnik = korisnik;
+		this.praceniKorisnici = praceniKorisnici;
+		this.praceneKategorije = praceneKategorije;
+		this.obelezeniRecepti = obelezeniRecepti;
+		this.autorskiRecepti = autorskiRecepti;
+		this.ocenjeniRecepti = ocenjeniRecepti;
+		this.sastojci = sastojci;
+	}
+
+	public String getKorIme() {
+		return korIme;
+	}
+
+	public void setKorIme(String korIme) {
+		this.korIme = korIme;
+	}
+
+	public String getLozinka() {
+		return lozinka;
+	}
+
+	public void setLozinka(String lozinka) {
+		this.lozinka = lozinka;
+	}
+
+	public TipKorisnika getVrstaKorisnika() {
+		return vrstaKorisnika;
+	}
+
+	public void setVrstaKorisnika(TipKorisnika vrstaKorisnika) {
+		this.vrstaKorisnika = vrstaKorisnika;
+	}
+
+	public int getBrPratioca() {
+		return brPratioca;
+	}
+
+	public void setBrPratioca(int brPratioca) {
+		this.brPratioca = brPratioca;
+	}
+
+	public int getBrMedalja() {
+		return brMedalja;
+	}
+
+	public void setBrMedalja(int brMedalja) {
+		this.brMedalja = brMedalja;
+	}
+
+	public List<Alat> getOprema() {
+		return Collections.unmodifiableList(oprema);
+	}
+
+	public void setOprema(List<Alat> oprema) {
+		this.oprema = oprema;
+	}
+	
+	public void dodajAlat(Alat a) {
+		this.oprema.add(a);
+	}
+	
+	public boolean izbrisiAlat(Alat a) {
+		return this.oprema.remove(a);
+	}
+
+	public Osoba getKorisnik() {
+		return korisnik;
+	}
+
+	public void setKorisnik(Osoba korisnik) {
+		this.korisnik = korisnik;
+	}
+
+	public List<KorisnickiNalog> getPraceniKorisnici() {
+		return Collections.unmodifiableList(praceniKorisnici);
+	}
+
+	public void setPraceniKorisnici(List<KorisnickiNalog> praceniKorisnici) {
+		this.praceniKorisnici = praceniKorisnici;
+	}
+	
+	public void dodajPracenogKorisnika(KorisnickiNalog kn) {
+		this.praceniKorisnici.add(kn);
+	}
+	
+	public boolean izbrisiPracenogKorisnika(KorisnickiNalog kn) {
+		return this.praceniKorisnici.remove(kn);
+	}
+
+	public List<Kategorija> getPraceneKategorije() {
+		return Collections.unmodifiableList(praceneKategorije);
+	}
+
+	public void setPraceneKategorije(List<Kategorija> praceneKategorije) {
+		this.praceneKategorije = praceneKategorije;
+	}
+	
+	public void dodajPracenuKategoriju(Kategorija k) {
+		this.praceneKategorije.add(k);
+	}
+	
+	public boolean izbrisiPracenuKategoriju(Kategorija k) {
+		return this.praceneKategorije.remove(k);
+	}
+
+	public List<Recept> getObelezeniRecepti() {
+		return Collections.unmodifiableList(obelezeniRecepti);
+	}
+
+	public void setObelezeniRecepti(List<Recept> obelezeniRecepti) {
+		this.obelezeniRecepti = obelezeniRecepti;
+	}
+
+	public void dodajObelezeniRecept(Recept r) {
+		this.obelezeniRecepti.add(r);
+	}
+	
+	public boolean izbrisiObelezeniRecept(Recept r) {
+		return this.obelezeniRecepti.remove(r);
+	}
+	
+	public List<Recept> getAutorskiRecepti() {
+		return Collections.unmodifiableList(autorskiRecepti);
+	}
+
+	public void setAutorskiRecepti(List<Recept> autorskiRecepti) {
+		this.autorskiRecepti = autorskiRecepti;
+	}
+
+	public void dodajAutorskiRecept(Recept r) {
+		this.autorskiRecepti.add(r);
+	}
+	
+	public boolean izbrisiAutorskiRecept(Recept r) {
+		return this.autorskiRecepti.remove(r);
+	}
+	
+	public List<Ocena> getOcenjeniRecepti() {
+		return Collections.unmodifiableList(ocenjeniRecepti);
+	}
+
+	public void setOcenjeniRecepti(List<Ocena> ocenjeniRecepti) {
+		this.ocenjeniRecepti = ocenjeniRecepti;
+	}
+
+	public void dodajOcenjeniRecept(Ocena o) {
+		this.ocenjeniRecepti.add(o);
+	}
+	
+	public List<Sastojak> getSastojci() {
+		return Collections.unmodifiableList(sastojci);
+	}
+
+	public void setSastojci(List<Sastojak> sastojci) {
+		this.sastojci = sastojci;
+	}
+	
+	public void dodajSastojak(Sastojak s) {
+		this.sastojci.add(s);
+	}
+	
+	public boolean izbrisiSastojak(Sastojak s) {
+		return this.sastojci.remove(s);
+	}
+
+	//promenaLozinke je zapravo samo set metoda
+	
+	//kreirajKategoriju treba da bude u platformi, a ne ovde
+
+/*
+izmenaRecepta	izmenaRecepta	void	private	FALSE	FALSE	FALSE		TRUE
+ostaviRecenziju	ostaviRecenziju	void	private	FALSE	FALSE	FALSE		TRUE
+odobriRecept	odobriRecept	void	public	FALSE	FALSE	FALSE		TRUE
+brisanjeProfila	brisanjeProfila	void	public	FALSE	FALSE	FALSE		TRUE
+kreirajRecept	kreirajRecept	void	public	FALSE	FALSE	FALSE		TRUE
+izmeniRecept	izmeniRecept	Boolean	public	FALSE	FALSE	FALSE		TRUE
+izbrisiRecept	izbrisiRecept	void	public	FALSE	FALSE	FALSE		TRUE
+svidjanjeRecepta	svidjanjeRecepta	void	public	FALSE	FALSE	FALSE		TRUE
+komentarisi	komentarisi	void	public	FALSE	FALSE	FALSE		TRUE
+izmeniKomentar	izmeniKomentar	void	public	FALSE	FALSE	FALSE		TRUE
+obrisiKomentar	obrisiKomentar	void	public	FALSE	FALSE	FALSE		TRUE
+oceniZvezde	oceniZvezde	Boolean	public	FALSE	FALSE	FALSE		TRUE
+zapratiKategoriju	zapratiKategoriju	void	public	FALSE	FALSE	FALSE		TRUE
+otpratiKategoriju	otpratiKategoriju	void	public	FALSE	FALSE	FALSE		TRUE
+zapratiKuvara	zapratiKuvara	Boolean	public	FALSE	FALSE	FALSE		TRUE
+otpratiKuvara	otpratiKuvara	Boolean	public	FALSE	FALSE	FALSE		TRUE
+dodajAlat	dodajAlat	void	public	FALSE	FALSE	FALSE		TRUE
+izbrisiAlat	izbrisiAlat	void	public	FALSE	FALSE	FALSE		TRUE
+*/
+	
+	public boolean izmenaRecepta(Recept r, String nazivRec, List<Alat> oprema, String opisPripreme, Tezina tezina, int duzinaMin, String imgPath,
+			String videoLink, int brMedalja, KorisnickiNalog autor, Recenzija recenzija, List<Ocena> ocene,
+			List<Kolicina> kolicineSastojaka, List<Kategorija> kategorije) {
+		//provera da li su uneta sva obavezna polja
+		if (nazivRec == "" || opisPripreme == "" || tezina == null || duzinaMin == 0 || kolicineSastojaka.isEmpty()) {
+			return false;
+		}
+		
+		//provera da li je ime jedinstveno medju autorskim receptima
+		for (Recept ar : autorskiRecepti) {
+			if (ar.getNazivRec().equals(nazivRec)) { 
+				return false; 
+			}
+		}
+		r.setNazivRec(nazivRec);
+		r.setOpisPripreme(opisPripreme);
+		r.setTezina(tezina);
+		r.setDuzinaMin(duzinaMin);
+		r.setKolicineSastojaka(kolicineSastojaka);
+		
+		if (!oprema.isEmpty()) {
+			r.setOprema(oprema);
+		}
+		
+		if (imgPath != "") {
+			r.setImgPath(imgPath);
+		}
+		
+		if (videoLink != "") {
+			r.setVideoLink(videoLink);
+		}
+		
+		if (brMedalja != 0) {
+			r.setBrMedalja(brMedalja);
+		}
+		
+		if (!kategorije.isEmpty()) {
+			r.setKategorije(kategorije);
+		}
+		
+		if (!kat.isEmpty()) rec.setKategorije(kat); //recept mora biti u nekog kategoriji?
+		
+		return true;
+	}
+		
+	
+	//gde su parametriii???
+	public boolean kreirajRecept(String naziv, String opis, Tezina t, int brMin, String imgPut, String vidPut, 
+			ArrayList<Kategorija> kat, ArrayList<Alat> alati, ArrayList<Kolicina> kolicine) {
+		for (Recept r : this.autorskiRecepti) if (r.getNazivRec().equals(naziv)) return false;
+		Recept rec = new Recept();
+		rec.setNazivRec(naziv);
+		rec.setAutor(this);
+		rec.setDuzinaMin(brMin);
+		rec.setImgPath(imgPut);
+		rec.setVideoLink(vidPut);
+		rec.setKategorije(kat);
+		rec.setKuhinskaOprema(alati);
+		rec.setOpisPripreme(opis);
+		rec.setTezina(t);
+		return true;
+	}
+
+	
+	
+	//moram proci kroz korisnikeKreatore i izbrisati sve ocene i reference na ovaj recept?!
+	//boolean
+	/*
+	//*public boolean izbrisiRecept(Recept rec) {
+		if (!this.autorskiRecepti.remove(rec)) return false;	//nije izbrisao, greska neka
+		PlatformaZaKuvare pZk = PlatformaZaKuvare.getInstance();
+		for (Osoba os: pZk.getOsobe()) {
+			if (os instanceof KorisnikKreator) {
+				KorisnikKreator k = (KorisnikKreator) os;
+				k.izbrisiObelezenRec(rec);				//za slucaj da je u obelezenim
+				Ocena ocena = k.pretraziOcene(rec);
+				if (ocena != null) k.izbrisiOcenjenRec(ocena);	//za slucaj da je ocenio
+			}
+		}
+		for (Kategorija k : pZk.getKategorija()) k.izbrisiRecept(rec);
+		return true;
+	}todo*/
+	
+	//odlajkivanje
+	public void svidjanjeRecepta(Recept rec) {
+		Ocena ocena = pretraziOcene(rec);
+		if (ocena == null) {
+			ocena = new Ocena();
+			ocena.setAutor(this);
+			ocena.setRecept(rec);
+			ocena.setSvidjanje(true);
+			this.ocenjeniRecepti.add(ocena);
+		}
+		else ocena.setSvidjanje(!ocena.isSvidjanje());
+	}
+	
+	//tekst komentara
+	public void komentarisi(Recept rec, String text) {
+		Komentar k = new Komentar();
+		k.setTekst(text);
+		Ocena oc;
+		oc = pretraziOcene(rec);
+		if (oc == null) {
+			oc = new Ocena();
+			oc.setAutor(this);
+			oc.setRecept(rec);
+			this.ocenjeniRecepti.add(oc);
+		}
+		oc.dodajKomentar(k);
+	}
+	
+	public void obrisiKomentar(Komentar kom) {
+		for (Ocena oc : this.ocenjeniRecepti) {
+			for (Komentar k : oc.getKomentari()) {
+				if (k.equals(kom)) {
+					ArrayList<Komentar> komi = new ArrayList<Komentar>();
+					for (Komentar pom : oc.getKomentari()) komi.add(pom);
+					komi.remove(kom);
+					oc.setKomentari(komi);
+					return;
+				}
+			}
+		}
+	}
+	
+	//fale zvezdice;  VOID
+	public void oceniZvezde(Recept rec, int brZvezdica) {
+		Ocena oc;
+		oc = pretraziOcene(rec);
+		if (oc == null) {
+			oc = new Ocena();
+			oc.setAutor(this);
+			oc.setRecept(rec);
+			this.ocenjeniRecepti.add(oc);
+		}
+		oc.setZvezdice(brZvezdica);
+	}
+	
+	//BOOLEAN
+	public boolean zapratiKategoriju(Kategorija kat) {
+		if (-1 != praceneKat.indexOf(kat)) return false;
+		kat.dodajPratioca(this);
+		praceneKat.add(kat);
+		return true;
+	}
+	public boolean otpratiKategoriju(Kategorija kat) {
+		if (-1 == praceneKat.indexOf(kat)) return false;
+		kat.izbrisiPratioca(this);
+		praceneKat.remove(kat);
+		return true;
+	}
+	
+	public boolean zapratiKuvara(KorisnickiNalog kuvar) {
+		if (-1 != zapraceniKor.indexOf(kuvar)) return false;
+		kuvar.brPratioca += 1;
+		zapraceniKor.add(kuvar);
+		return true;
+	}
+	public boolean otpratiKuvara(KorisnickiNalog kuvar) {
+		if (-1 == zapraceniKor.indexOf(kuvar)) return false;
+		kuvar.brPratioca -= 1;
+		zapraceniKor.remove(kuvar);
+		return true;
+	}
+
+	private Ocena pretraziOcene(Recept r) {
+		for (Ocena oc : this.ocenjeniRecepti) if (oc.getRecept() == r) return oc;
+		return null;
+	}
+	
+	public void brisanjeProfila() {
+		//telo funkcije, brisi komentare, recepte, njega iz liste
+	}	
+}
