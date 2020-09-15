@@ -34,7 +34,7 @@ public class OdabirSastojaka extends JFrame {
 
 		this.mojRoditelj.setVisible(false);
 		setSize(400, 400);
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		
@@ -62,7 +62,7 @@ public class OdabirSastojaka extends JFrame {
 			}
 		});
 		add(pnl, BorderLayout.SOUTH);
-		
+		setVisible(true);
 	}
 	
 	private void kraj() {

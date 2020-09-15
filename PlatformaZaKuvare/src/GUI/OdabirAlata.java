@@ -34,7 +34,7 @@ public class OdabirAlata extends JFrame{
 
 		this.mojRoditelj.setVisible(false);
 		setSize(400, 400);
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setTitle("    Odabir alata:");
@@ -53,10 +53,36 @@ public class OdabirAlata extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
+				OdabirAlata.this.kraj();				
 			}
 		});
+		add(pnl, BorderLayout.SOUTH);
+		setVisible(true);
+		
+	}
+
+	protected void kraj() {
+		if(ch1.isSelected()) {
+			selektovani.add(Alat.MIKROTALASNA);
+		}
+		if(ch2.isSelected()) {
+			selektovani.add(Alat.BLENDER);
+		}
+		if(ch3.isSelected()) {
+			selektovani.add(Alat.KALUP);
+		}
+		if(ch4.isSelected()) {
+			selektovani.add(Alat.MIKSER);
+		}
+		if(ch5.isSelected()) {
+			selektovani.add(Alat.SOKOVNIK);
+		}
+		if(ch6.isSelected()) {
+			selektovani.add(Alat.TOSTER);
+		}
+		this.korNalog.setOprema(selektovani);
+		this.mojRoditelj.setVisible(true);
+		dispose();
 		
 	}
 }
