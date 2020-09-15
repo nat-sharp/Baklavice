@@ -8,8 +8,6 @@ public enum Alat {
 	private Alat(int alat) {
 		this.alat = alat;
 	}
-
-	
 	
 	public int getAlat() {
 		return alat;
