@@ -9,7 +9,7 @@ import Klase.Osoba;
 
 public class MenadzerOsoba {
 	//PZK
-	public static Osoba NN = new Osoba("NN", "", null, 0, null, null, null);
+	public Osoba NN = new Osoba("NN", "", null, 0, null, null, null);
 	public static MenadzerOsoba instanca;
 	private List<Osoba> osobe;
 	
@@ -25,6 +25,9 @@ public class MenadzerOsoba {
 	}
 	
 	public List<Osoba> getOsobe() {
+		return osobe;
+	}
+	public List<Osoba> getNepromenljiveOsobe() {
 		return Collections.unmodifiableList(osobe);
 	}
 	public void setOsobe(List<Osoba> osobe) {

@@ -12,8 +12,8 @@ public class MenadzerKNaloga {
 	//osoba, TLK, kategorija, korNalog, PZK
 	public static MenadzerKNaloga instanca;
 	private List<KorisnickiNalog> korNalozi;
-	public static KorisnickiNalog NN = new KorisnickiNalog("NN", "", TipKorisnika.NN, 0, 0,
-			null, MenadzerOsoba.NN, null, null, null, null, null, null);
+	public KorisnickiNalog NN = new KorisnickiNalog("NN", "", TipKorisnika.NN, 0, 0,
+			null, MenadzerOsoba.getInstance().NN, null, null, null, null, null, null);
 	
 	private MenadzerKNaloga() {
 		korNalozi = new ArrayList<KorisnickiNalog>();
@@ -27,6 +27,9 @@ public class MenadzerKNaloga {
 	}
 	
 	public List<KorisnickiNalog> getKorNalozi() {
+		return korNalozi;
+	}
+	public List<KorisnickiNalog> getNepromenljiveKorNaloge() {
 		return Collections.unmodifiableList(korNalozi);
 	}
 	public void setKorNalozi(List<KorisnickiNalog> korNalozi) {
