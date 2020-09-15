@@ -25,40 +25,51 @@ public class MenadzerRecepta {
 	}
 	
 	public List<Recept> getReceptiNaCekanju() {
+		return receptiNaCekanju;
+	}
+	
+	public List<Recept> getNepromenljiviReceptiNaCekanju() {
 		return Collections.unmodifiableList(receptiNaCekanju);
 	}
-	public void setReceptiNaCekanju(List<Recept> recepti) {
-		this.recepti = recepti;
+	
+	public void setReceptiNaCekanju(List<Recept> r) {
+		this.recepti = r;
 	}
-	public void dodajReceptNaCekanje(Recept novi) {
+	
+	public void dodajReceptNaCekanju(Recept novi) {
 		this.receptiNaCekanju.add(novi);
 	}
-	public boolean izbrisiReceptNaCekanje(Recept rec) {
-		if(!receptiNaCekanju.contains(rec)) {
+	
+	public boolean izbrisiReceptNaCekanju(Recept recept) {
+		if(!receptiNaCekanju.contains(recept)) {
 			return false;
 		}
-		receptiNaCekanju.remove(rec);
+		receptiNaCekanju.remove(recept);
 		return true;
 	}
 	
-	
-	
 	public List<Recept> getRecepti() {
+		return recepti;
+	}
+	public List<Recept> getNepromenljiviRecepti() {
 		return Collections.unmodifiableList(recepti);
 	}
+	
 	public void setRecepti(List<Recept> recepti) {
 		this.recepti = recepti;
 	}
+	
 	public void dodajRecept(Recept novi) {
 		this.recepti.add(novi);
 	}
+	
 	public boolean izbrisiRecept(Recept recept) {
 		if(!this.recepti.contains(recept)) {
 			return false;
 		}
 		this.recepti.remove(recept);
 		
-		for(Kategorija k : MenadzerKategorija.getInstance().getKategoriju()) {
+		for(Kategorija k : MenadzerKategorija.getInstance().getKategorije()) {
 			if(k.getRecepti().contains(recept)) {
 				k.getRecepti().remove(recept); //brisemo recepte iz date katerije
 			}
@@ -103,5 +114,4 @@ public class MenadzerRecepta {
 		//mislim da iz top liste recepata ne treba da brisemo, ne znam kako cemo ih prikazivati, mozda po datumima
 		return true;
 	}
-	
 }

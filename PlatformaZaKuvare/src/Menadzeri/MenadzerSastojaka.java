@@ -22,14 +22,21 @@ public class MenadzerSastojaka {
 	}
 	
 	public List<Sastojak> getSastojci() {
+		return sastojci;
+	}
+	
+	public List<Sastojak> getNepromenljiviSastojci() {
 		return Collections.unmodifiableList(sastojci);
 	}
+	
 	public void setSastojci(List<Sastojak> sastojci) {
 		this.sastojci = sastojci;
 	}
+	
 	public void dodajSastojak(Sastojak s) {
 		this.sastojci.add(s);
 	}
+	
 	public boolean izbrisiSastojak(Sastojak s) {
 		if(!this.sastojci.contains(s)) {
 			return false;
@@ -37,5 +44,4 @@ public class MenadzerSastojaka {
 		this.sastojci.remove(s);
 		return true;
 	}
-	
 }

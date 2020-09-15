@@ -17,6 +17,7 @@ public class MenadzerKategorija {
 		kategorije = new ArrayList<Kategorija>();
 		//telo
 	}
+	
 	public static MenadzerKategorija getInstance() {
 		if (instanca == null) {
 			instanca = new MenadzerKategorija();
@@ -24,16 +25,22 @@ public class MenadzerKategorija {
 		return instanca;
 	}
 	
-	public List<Kategorija> getKategoriju() {
+	public List<Kategorija> getKategorije() {
+		return kategorije;
+	}
+
+	public List<Kategorija> getNepromenljiveKategorije() {
 		return Collections.unmodifiableList(kategorije);
 	}
-	public void setKategoriju(List<Kategorija> kattt) {
-		this.kategorije = kattt;
+	
+	public void setKategorije(List<Kategorija> k) {
+		this.kategorije = k;
 	}
 
 	public void dodajKategoriju(Kategorija k) {
 		kategorije.add(k);
 	}
+	
 	public boolean obrisiKategoriju(Kategorija k) {
 		if(!kategorije.contains(k)){
 			return false;
@@ -43,7 +50,7 @@ public class MenadzerKategorija {
 			kk.getPraceneKategorije().remove(k);
 		}
 		
-		for(Recept r: MenadzerRecepta.getInstance().getRecepti()) {
+		for(Recept r : MenadzerRecepta.getInstance().getRecepti()) {
 			if(r.getKategorije().contains(k)) {
 				r.getKategorije().remove(k);
 			}
