@@ -90,7 +90,7 @@ public class KorisnickiNalog {
 		this.brMedalja = brMedalja;
 	}
 
-	public List<Alat> getOprema() {
+	public List<Alat> getNepromenljivuOprema() {
 		return Collections.unmodifiableList(oprema);
 	}
 
@@ -114,7 +114,7 @@ public class KorisnickiNalog {
 		this.korisnik = korisnik;
 	}
 
-	public List<KorisnickiNalog> getPraceniKorisnici() {
+	public List<KorisnickiNalog> getNepromenljivePraceniKorisnici() {
 		return Collections.unmodifiableList(praceniKorisnici);
 	}
 
@@ -130,7 +130,7 @@ public class KorisnickiNalog {
 		return this.praceniKorisnici.remove(kn);
 	}
 
-	public List<Kategorija> getPraceneKategorije() {
+	public List<Kategorija> getNepromenljivePraceneKategorije() {
 		return Collections.unmodifiableList(praceneKategorije);
 	}
 
@@ -146,7 +146,7 @@ public class KorisnickiNalog {
 		return this.praceneKategorije.remove(k);
 	}
 
-	public List<Recept> getObelezeniRecepti() {
+	public List<Recept> getNepromenljiviObelezeniRecepti() {
 		return Collections.unmodifiableList(obelezeniRecepti);
 	}
 
@@ -162,7 +162,7 @@ public class KorisnickiNalog {
 		return this.obelezeniRecepti.remove(r);
 	}
 	
-	public List<Recept> getAutorskiRecepti() {
+	public List<Recept> getNepromenljiviAutorskiRecepti() {
 		return Collections.unmodifiableList(autorskiRecepti);
 	}
 
@@ -179,7 +179,7 @@ public class KorisnickiNalog {
 		return this.autorskiRecepti.remove(r);
 	}
 	
-	public List<Ocena> getOcenjeniRecepti() {
+	public List<Ocena> getNepromenljiviOcenjeniRecepti() {
 		return Collections.unmodifiableList(ocenjeniRecepti);
 	}
 
@@ -191,7 +191,7 @@ public class KorisnickiNalog {
 		this.ocenjeniRecepti.add(o);
 	}
 	
-	public List<Sastojak> getSastojci() {
+	public List<Sastojak> getNepromenljiviSastojci() {
 		return Collections.unmodifiableList(sastojci);
 	}
 
@@ -403,5 +403,35 @@ public class KorisnickiNalog {
 		kuvar.brPratioca -= 1;
 		praceniKorisnici.remove(kuvar);
 		return true;
-	}	
+	}
+
+	public List<Alat> getOprema() {
+		return oprema;
+	}
+
+	public List<KorisnickiNalog> getPraceniKorisnici() {
+		return praceniKorisnici;
+	}
+
+	public List<Kategorija> getPraceneKategorije() {
+		return praceneKategorije;
+	}
+
+	public List<Recept> getObelezeniRecepti() {
+		return obelezeniRecepti;
+	}
+
+	public List<Recept> getAutorskiRecepti() {
+		return autorskiRecepti;
+	}
+
+	public List<Ocena> getOcenjeniRecepti() {
+		return ocenjeniRecepti;
+	}
+
+	public List<Sastojak> getSastojci() {
+		return sastojci;
+	}
+	
+	
 }

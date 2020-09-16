@@ -10,7 +10,7 @@ public class Osoba {
 	private String ime;
 	private String prezime;
 	private LocalDate datumRodjenja;
-	private long brojTelefona;
+	private String brojTelefona;
 	private Pol pol;
 	private Mesto boraviste;	//posto je veza 1..1 ka mestu
 	private List<KorisnickiNalog> korNalozi; //posto je veza 0..* ka korisnickom nalogu
@@ -37,10 +37,10 @@ public class Osoba {
 		this.datumRodjenja = datumRodjenja;
 	}
 	
-	public long getBrojTelefona() {
+	public String getBrojTelefona() {
 		return brojTelefona;
 	}
-	public void setBrojTelefona(long brojTelefona) {
+	public void setBrojTelefona(String brojTelefona) {
 		this.brojTelefona = brojTelefona;
 	}
 	
@@ -83,7 +83,7 @@ public class Osoba {
 		this.korNalozi = new ArrayList<KorisnickiNalog>();
 		this.platforma = PlatformaZaKuvare.getInstance();
 	}
-	public Osoba(String i, String prz, LocalDate dat, long brT, Pol p, Mesto m, ArrayList<KorisnickiNalog> nal) {
+	public Osoba(String i, String prz, LocalDate dat, String brT, Pol p, Mesto m, ArrayList<KorisnickiNalog> nal) {
 		this.ime = i;
 		this.prezime = prz;
 		this.datumRodjenja = dat;

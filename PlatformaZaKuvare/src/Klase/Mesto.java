@@ -5,6 +5,10 @@ public class Mesto {
 	private String naziv;
 	private int pttBroj;
 	
+	public Mesto(String string, int i) {
+		this.naziv = string;
+		this.pttBroj = i;
+	}
 	public String getNaziv() {
 		return naziv;
 	}

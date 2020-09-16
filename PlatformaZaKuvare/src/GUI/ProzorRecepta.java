@@ -11,9 +11,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
+import Klase.Alat;
 import Klase.Kategorija;
 import Klase.Kolicina;
-import Klase.Komentar;
 import Klase.Ocena;
 import Klase.PlatformaZaKuvare;
 import Klase.Recept;
@@ -42,13 +42,25 @@ public class ProzorRecepta extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setResizable(false);
-		setTitle("");
+		setTitle("Recept:");
 		
 		JPanel pani1 = new JPanel(new GridLayout(5, 2));
 		JPanel pani2 = new JPanel(new GridLayout(5, 2));
-		setLayout(new GridLayout(10, 1));
+		setLayout(new GridLayout(11, 1));
 		
-		add(new JLabel("     " + recept.getAutor().getKorIme()));
+		JButton korisnik = new JButton(recept.getAutor().getKorIme());
+		korisnik.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//ProfilKorisnika pk = new ProfilKorisnika(ProzorRecepta.this.recept.getAutor());
+			}
+		});
+		JPanel prvi = new JPanel(new GridLayout(2, 5));
+		prvi.add(new JLabel("")); prvi.add(new JLabel("")); prvi.add(new JLabel(""));
+		prvi.add(new JLabel("")); prvi.add(korisnik); prvi.add(new JLabel(""));
+		add(prvi);
+		
 		add(new JLabel("     " + this.recept.getNazivRec()));
 		pani1.add(new JLabel("        Obavezni sastojci:"));
 		pani2.add(new JLabel("        Opcioni sastojci:"));
@@ -64,6 +76,14 @@ public class ProzorRecepta extends JFrame {
 		StringBuilder str = new StringBuilder(); str.append("   ");
 		for (Kategorija k : recept.getKategorije()) str.append("@" + k.getNazivKat() + "   ");
 		add(new JLabel(str.toString()));
+		
+		StringBuilder alatii = new StringBuilder(); alatii.append("     Potrebni alati: ");
+		for (Alat a : recept.getOprema()) {
+			alatii.append(a.toString());
+			if (!a.equals(recept.getOprema().get(recept.getOprema().size() -1))) alatii.append(", ");
+		}
+		add(new JLabel(alatii.toString()));
+		
 		add(new JLabel("     Potrebno vreme: " + recept.getDuzinaMin() + " min."));
 		add(new JLabel("     Tezina: " + recept.getTezina().toString()));
 		
@@ -85,7 +105,7 @@ public class ProzorRecepta extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				KomentariRecepta km = new Komentarirecepata(ProzorRecepta.this.recept);
+				//KomentariRecepta km = new Komentarirecepata(ProzorRecepta.this.recept);
 			}
 		});
 		pani3.add(dugmeKom);
