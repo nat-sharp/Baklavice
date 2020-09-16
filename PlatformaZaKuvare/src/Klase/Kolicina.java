@@ -51,9 +51,20 @@ public class Kolicina {
 
 	@Override
 	public String toString() {
-		return kolicina + " " + this.mernaJedinica;
+		StringBuilder str = new StringBuilder();
+		str.append("          - " + kolicina + " " + mernaJedinica.toString() + " " + sastojak.getNaziv());
+		if (!sastojak.getZamjenski().isEmpty()) {
+			str.append(" (");
+			for (Sastojak s : sastojak.getZamjenski()) {
+				str.append(s.getNaziv());
+				if (!s.equals(sastojak.getZamjenski().get(sastojak.getZamjenski().size() - 1))) {
+					str.append(", ");
+				}
+			}
+			str.append(")");
+		}
+		return str.toString();
 	}
-	
 	
 	
 	

@@ -57,7 +57,7 @@ public class Recept {
 		this.nazivRec = nazivRec;
 	}
 
-	public List<Alat> getOprema() {
+	public List<Alat> getNepromenljivuOprema() {
 		return Collections.unmodifiableList(oprema);
 	}
 	
@@ -137,7 +137,7 @@ public class Recept {
 		this.recenzija = recenzija;
 	}
 	
-	public List<Ocena> getOcene() {
+	public List<Ocena> getNepromenljiveOcene() {
 		return Collections.unmodifiableList(ocene);
 	}
 	
@@ -153,7 +153,7 @@ public class Recept {
 		return this.ocene.remove(o);
 	}
 	
-	public List<Kolicina> getKolicineSastojaka() {
+	public List<Kolicina> getNepromenljiveKolicineSastojaka() {
 		return Collections.unmodifiableList(kolicineSastojaka);
 	}
 	
@@ -169,7 +169,7 @@ public class Recept {
 		return this.kolicineSastojaka.remove(ks);
 	}
 	
-	public List<Kategorija> getKategorije() {
+	public List<Kategorija> getNepromenljiveKategorije() {
 		return Collections.unmodifiableList(kategorije);
 	}
 	
@@ -184,4 +184,22 @@ public class Recept {
 	public boolean izbrisiKategoriju(Kategorija k) {
 		return this.kategorije.remove(k);
 	}
+
+	public List<Alat> getOprema() {
+		return oprema;
+	}
+
+	public List<Ocena> getOcene() {
+		return ocene;
+	}
+
+	public List<Kolicina> getKolicineSastojaka() {
+		return kolicineSastojaka;
+	}
+
+	public List<Kategorija> getKategorije() {
+		return kategorije;
+	}
+	
+	
 }

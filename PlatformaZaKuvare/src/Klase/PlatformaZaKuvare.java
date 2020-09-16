@@ -10,6 +10,8 @@ import Menadzeri.MenadzerRecepta;
 
 public class PlatformaZaKuvare {
 	
+	private KorisnickiNalog ulogovaniKorisnik;
+	
 	private PlatformaZaKuvare() {
 	}
 	
@@ -23,6 +25,13 @@ public class PlatformaZaKuvare {
 		return instance;
 	}
 	
+	public KorisnickiNalog getUlogovaniKorisnik() {
+		return ulogovaniKorisnik;
+	}
+	public void setUlogovaniKorisnik(KorisnickiNalog ulogovaniKorisnik) {
+		this.ulogovaniKorisnik = ulogovaniKorisnik;
+	}
+
 	//ovo trebamo dodatno razraditi
 	//generisanje top liste kreatora, na osnovu broja postavljenih recepata, komentara, nesto na taj fazon
 	public TopListaKreatora generisanjeTLK(int brojBiranja) {
