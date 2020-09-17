@@ -4,23 +4,20 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import Menadzeri.MenadzerRecepta;
-import Menadzeri.MenadzerTLR;
-
 public class KorisnickiNalog {
 	private String korIme;
 	private String lozinka;
 	private TipKorisnika vrstaKorisnika;	
 	private int brPratioca = 0;
 	private int brMedalja = 0;
-	private ArrayList<Alat> oprema;
+	private List<Alat> oprema;
 	private Osoba korisnik;
 	private List<KorisnickiNalog> praceniKorisnici;	
 	private List<Kategorija> praceneKategorije;
 	private List<Recept> obelezeniRecepti;	
 	private List<Recept> autorskiRecepti; //knjiga recepata korisnika		
 	private List<Ocena> ocenjeniRecepti;	
-	private ArrayList<Sastojak> sastojci;
+	private List<Sastojak> sastojci;
 	
 	public KorisnickiNalog() {
 		this.korIme = "";
@@ -35,9 +32,9 @@ public class KorisnickiNalog {
 	}
 	
 	public KorisnickiNalog(String korIme, String lozinka, TipKorisnika vrstaKorisnika, int brPratioca, int brMedalja,
-			ArrayList<Alat> oprema, Osoba korisnik, List<KorisnickiNalog> praceniKorisnici,
+			List<Alat> oprema, Osoba korisnik, List<KorisnickiNalog> praceniKorisnici,
 			List<Kategorija> praceneKategorije, List<Recept> obelezeniRecepti, List<Recept> autorskiRecepti,
-			List<Ocena> ocenjeniRecepti, ArrayList<Sastojak> sastojci) {
+			List<Ocena> ocenjeniRecepti, List<Sastojak> sastojci) {
 		this.korIme = korIme;
 		this.lozinka = lozinka;
 		this.vrstaKorisnika = vrstaKorisnika;
@@ -93,8 +90,11 @@ public class KorisnickiNalog {
 		this.brMedalja = brMedalja;
 	}
 
+	public List<Alat> getNepromenljivuOprema() {
+		return Collections.unmodifiableList(oprema);
+	}
 
-	public void setOprema(ArrayList<Alat> oprema) {
+	public void setOprema(List<Alat> oprema) {
 		this.oprema = oprema;
 	}
 	
@@ -176,9 +176,6 @@ public class KorisnickiNalog {
 	
 	//*** Trebalo bi dodati brisanje iz svih delova platforme ***
 	public boolean izbrisiAutorskiRecept(Recept r) {
-		MenadzerRecepta.getInstance().izbrisiRecept(r);
-		for (Kategorija k : r.getKategorije()) k.izbrisiRecept(r);
-		for (TopListaRecepata tlr : MenadzerTLR.getInstance().getTopListeRecepata()) tlr.izbrisi(r);
 		return this.autorskiRecepti.remove(r);
 	}
 	
@@ -194,7 +191,11 @@ public class KorisnickiNalog {
 		this.ocenjeniRecepti.add(o);
 	}
 	
-	public void setSastojci(ArrayList<Sastojak> sastojci) {
+	public List<Sastojak> getNepromenljiviSastojci() {
+		return Collections.unmodifiableList(sastojci);
+	}
+
+	public void setSastojci(List<Sastojak> sastojci) {
 		this.sastojci = sastojci;
 	}
 	
@@ -215,7 +216,7 @@ public class KorisnickiNalog {
 	//*** izmeniKomentar je samo kom.setTekst
 
 	//*** Zasto je private u klasnom? *** I zasto postoje dve funkcije? ***
-	public boolean izmenaRecepta(Recept r, String nazivRec, ArrayList<Alat> oprema, String opisPripreme, Tezina tezina, int duzinaMin, String imgPath,
+	public boolean izmenaRecepta(Recept r, String nazivRec, List<Alat> oprema, String opisPripreme, Tezina tezina, int duzinaMin, String imgPath,
 			String videoLink, int brMedalja, KorisnickiNalog autor, Recenzija recenzija, List<Ocena> ocene,
 			List<Kolicina> kolicineSastojaka, List<Kategorija> kategorije) {
 		//provera da li su uneta sva obavezna polja
@@ -259,7 +260,7 @@ public class KorisnickiNalog {
 	}
 		
 	
-	public boolean kreirajRecept(String nazivRec, ArrayList<Alat> oprema, String opisPripreme, Tezina tezina, int duzinaMin, String imgPath,
+	public boolean kreirajRecept(String nazivRec, List<Alat> oprema, String opisPripreme, Tezina tezina, int duzinaMin, String imgPath,
 			String videoLink, int brMedalja, KorisnickiNalog autor, Recenzija recenzija, List<Ocena> ocene,
 			List<Kolicina> kolicineSastojaka, List<Kategorija> kategorije) {
 		//provera da li su uneta sva obavezna polja
@@ -328,8 +329,7 @@ public class KorisnickiNalog {
 	}
 	
 	public void komentarisi(Recept r, String text) {
-		Komentar k = new Komentar();
-		k.setTekst(text);
+		Komentar k = new Komentar(text);
 		Ocena o = pretraziOcene(r);
 		if (o == null) {
 			o = new Ocena();
@@ -338,17 +338,30 @@ public class KorisnickiNalog {
 			ocenjeniRecepti.add(o);
 		}
 		o.dodajKomentar(k);
+		k.setOcena(o);
+		r.dodajOcenu(o);
 	}
 	
-	public void obrisiKomentar(Komentar kom) {
+	public void izmeniKomentar(String stari, String novi) {
 		for (Ocena o : ocenjeniRecepti) {
 			for (Komentar k1 : o.getKomentari()) {
-				if (k1.equals(kom)) {
+				if (k1.getTekst().equals(stari)) {
+					k1.setTekst(novi);
+					return;
+				}
+			}
+		}
+	}
+	
+	public void obrisiKomentar(String text) {
+		for (Ocena o : ocenjeniRecepti) {
+			for (Komentar k1 : o.getKomentari()) {
+				if (k1.getTekst().equals(text)) {
 					ArrayList<Komentar> komentari = new ArrayList<Komentar>();
 					for (Komentar k2 : o.getKomentari()) {
 						komentari.add(k2);
 					}
-					komentari.remove(kom);
+					komentari.remove(k1);
 					o.setKomentari(komentari);
 					return;
 				}
@@ -404,7 +417,7 @@ public class KorisnickiNalog {
 		return true;
 	}
 
-	public ArrayList<Alat> getOprema() {
+	public List<Alat> getOprema() {
 		return oprema;
 	}
 
@@ -428,7 +441,7 @@ public class KorisnickiNalog {
 		return ocenjeniRecepti;
 	}
 
-	public ArrayList<Sastojak> getSastojci() {
+	public List<Sastojak> getSastojci() {
 		return sastojci;
 	}
 	

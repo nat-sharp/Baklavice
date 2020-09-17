@@ -2,6 +2,7 @@ package Klase;
 
 public class Komentar {
 	private String tekst;
+	private Ocena ocena;
 	private boolean aktivan = true;
 	
 	public Komentar() {
@@ -18,6 +19,13 @@ public class Komentar {
 	}
 	public void setTekst(String tekst) {
 		this.tekst = tekst;
+	}
+	
+	public Ocena getOcena() {
+		return ocena;
+	}
+	public void setOcena(Ocena ocena) {
+		this.ocena = ocena;
 	}
 	
 	public boolean isAktivan() {
