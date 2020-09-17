@@ -14,6 +14,7 @@ import Klase.Recenzija;
 import Klase.Recept;
 import Klase.Sastojak;
 import Klase.Tezina;
+import Klase.TipKorisnika;
 
 public class Main {
 	public static void main(String[] args) {
@@ -64,6 +65,7 @@ public class Main {
 		KorisnickiNalog kn = new KorisnickiNalog();
 		PlatformaZaKuvare.getInstance().setUlogovaniKorisnik(kn);
 		kn.setKorIme("Teest");
+		kn.setVrstaKorisnika(TipKorisnika.KREATOR);
 		//Kategorija kat = new Kategorija("KATEE", "bla");
 		//ArrayList<Kategorija> k = new ArrayList<Kategorija>();
 		//k.add(kat);
@@ -78,6 +80,7 @@ public class Main {
 		kn.dodajObelezeniRecept(r);
 		//new PrikazObelezenihRecepata(kn);
 		
-		new DodavanjeRecepta();
+		//new DodavanjeRecepta();
+		new IzmenaRecepta(kn, r);
 	}
 }

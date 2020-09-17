@@ -9,7 +9,7 @@ import Klase.Osoba;
 
 public class MenadzerOsoba {
 	//PZK
-	public Osoba NN = new Osoba("NN", "", null, 0, null, null, null);
+	public Osoba NN = new Osoba("NN", "", null, null, null, null, null);
 	public static MenadzerOsoba instanca;
 	private List<Osoba> osobe;
 	

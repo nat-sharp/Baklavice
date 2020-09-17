@@ -30,7 +30,7 @@ public class AutorskiRecepti extends ProzorSaTabelom {
 				int index = AutorskiRecepti.this.tabela.getSelectedRow();
 				if (index >= 0) {
 					Recept rec = AutorskiRecepti.this.recepti.get(index);
-					//IZMENAAA
+					new IzmenaRecepta(rec.getAutor(), rec);
 				}
 				else {
 					JOptionPane.showMessageDialog(AutorskiRecepti.this, "Nije selektovan recept za izmenu!", "Greska", JOptionPane.ERROR_MESSAGE);

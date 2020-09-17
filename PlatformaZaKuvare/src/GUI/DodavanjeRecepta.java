@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -11,22 +12,31 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import Klase.Kolicina;
 import Klase.KorisnickiNalog;
 import Klase.PlatformaZaKuvare;
+import Klase.Recept;
+import Klase.Sastojak;
+import Menadzeri.MenadzerRecepta;
 
 public class DodavanjeRecepta extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private KorisnickiNalog kreator;
+	private Recept recept;
+	private KorisnickiNalog pomocniZaAlat;
 
 	public DodavanjeRecepta() {
 		this.kreator = PlatformaZaKuvare.getInstance().getUlogovaniKorisnik();
+		this.recept = new Recept();
+		this.recept.setAutor(this.kreator);
+		this.pomocniZaAlat = new KorisnickiNalog();
 		
 		setSize(400, 400);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setResizable(false);
-		setTitle("Dodavanje recepta");
+		setTitle("Izmena recepta");
 		
 		setLayout(new GridLayout(10, 2));
 		add(new JLabel("   Korisnicko ime: " + this.kreator.getKorIme()));
@@ -44,8 +54,7 @@ public class DodavanjeRecepta extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
+				new OdabirKolicina(DodavanjeRecepta.this.recept, true, true, new ArrayList<Sastojak>());
 			}
 		});
 		JPanel panObSastojci = new JPanel(new GridLayout(1, 2));
@@ -59,8 +68,9 @@ public class DodavanjeRecepta extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
+				ArrayList<Sastojak> lis = new ArrayList<Sastojak>();
+				for (Kolicina k : DodavanjeRecepta.this.recept.getKolicineSastojaka()) lis.add(k.getSastojak());
+				new OdabirKolicina(DodavanjeRecepta.this.recept, true, false, lis);
 			}
 		});
 		JPanel panOpSastojci = new JPanel(new GridLayout(1, 2));
@@ -78,8 +88,7 @@ public class DodavanjeRecepta extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
+				new OdabirKategorije(DodavanjeRecepta.this.recept, true);
 			}
 		});
 		JPanel panKat = new JPanel(new GridLayout(1, 2));
@@ -93,8 +102,7 @@ public class DodavanjeRecepta extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
+				new OdabirAlata(DodavanjeRecepta.this, DodavanjeRecepta.this.pomocniZaAlat);
 			}
 		});
 		JPanel panAlat = new JPanel(new GridLayout(1, 2));
@@ -109,13 +117,18 @@ public class DodavanjeRecepta extends JFrame {
 		add(new JLabel());
 		JPanel kraj = new JPanel(new GridLayout(1, 2));
 		kraj.add(new JLabel());
-		JButton sacuvaj = new JButton("Sauvaj");
+		JButton sacuvaj = new JButton("Sacuvaj");
 		sacuvaj.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
+				DodavanjeRecepta.this.recept.setNazivRec(ime.getText());
+				DodavanjeRecepta.this.recept.setDuzinaMin(Integer.parseInt(vreme.getText()));
+				DodavanjeRecepta.this.recept.setOpisPripreme(priprema.getText());
+				DodavanjeRecepta.this.recept.setOprema(DodavanjeRecepta.this.pomocniZaAlat.getOprema());
+//				video link i image link????
+				MenadzerRecepta.getInstance().dodajReceptNaCekanju(DodavanjeRecepta.this.recept);
+				DodavanjeRecepta.this.dispose();
 			}
 		});
 		kraj.add(sacuvaj);
