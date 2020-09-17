@@ -114,4 +114,13 @@ public class MenadzerRecepta {
 		//mislim da iz top liste recepata ne treba da brisemo, ne znam kako cemo ih prikazivati, mozda po datumima
 		return true;
 	}
+		public Recept getReceptByInfo(String naz, String korIme) {
+		for (Recept r: recepti ) {
+			if(r.getNazivRec().equals(naz) && r.getAutor().getKorIme().equals(korIme)) {
+				return r;
+			}
+		}
+		return null;
+	}
+	
 }

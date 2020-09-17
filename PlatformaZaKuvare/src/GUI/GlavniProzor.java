@@ -71,7 +71,7 @@ public class GlavniProzor extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				GlavniProzor.this.dispose();
-				Pretraga p = new Pretraga();	
+				PretragaProzor p = new PretragaProzor();	
 			}
 		});
 		

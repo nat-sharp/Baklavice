@@ -75,7 +75,7 @@ public class PlatformaZaKuvare {
 	//ovo bi trebalo na osnovu ocjena, mozda broja komentara nesto iskombinovati
 	public TopListaRecepata generisanjeTLR(int brojBiranja) {
 		HashMap<Integer, Double>mapa = new HashMap<Integer, Double>();
-		List<Recept> recepti = MenadzerRecepta.getInstance().getRecepti();
+		ArrayList<Recept> recepti = (ArrayList<Recept>) MenadzerRecepta.getInstance().getRecepti();
 		for(Recept r : recepti) {
 			int indeks = recepti.indexOf(r);
 			int brZvjezdica = 0;
@@ -164,9 +164,28 @@ public class PlatformaZaKuvare {
 		
 		
 		
-		if(duzina == 0) {
+		
+		int minDuz = 0;
+		int maxDuz = 0;
+		if(duzina == 1) {
+			minDuz = 1;
+			maxDuz = 15;
+		}else if(duzina == 15) {
+			minDuz = 15;
+			maxDuz = 30;
+		}else if(duzina == 30) {
+			minDuz = 30;
+			maxDuz = 45;
+		}else if(duzina == 45) {
+			minDuz = 45;
+			maxDuz = 60;
+		}else if(duzina == 60) {
+			minDuz = 60;
+			maxDuz = 1000;
+		}
+		if(duzina != 0) {
 			for(Recept r:recepti) {
-				if(r.getDuzinaMin()<=duzina) {
+				if(r.getDuzinaMin()<=maxDuz && r.getDuzinaMin()>= minDuz) {
 					if(!vrati.contains(r)) {
 						vrati.add(r);
 					}
@@ -193,6 +212,6 @@ public class PlatformaZaKuvare {
 			}			
 		}
 		
-		return vrati;
+		return (ArrayList<Recept>) vrati;
 	}	
 }

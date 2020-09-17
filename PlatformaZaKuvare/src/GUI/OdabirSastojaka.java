@@ -72,8 +72,11 @@ public class OdabirSastojaka extends JFrame {
 				selektovani.add(sastojci.get(i));
 			}
 			i++;
+		}if(this.mojRoditelj instanceof PretragaProzor) {
+			((PretragaProzor) this.mojRoditelj).sastojci = selektovani;
+		}else {
+			this.korNalog.setSastojci(selektovani);
 		}
-		this.korNalog.setSastojci(selektovani);
 		this.mojRoditelj.setVisible(true);
 		dispose();
 	}

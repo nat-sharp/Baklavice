@@ -79,8 +79,11 @@ public class OdabirAlata extends JFrame{
 		}
 		if(ch6.isSelected()) {
 			selektovani.add(Alat.TOSTER);
+		}if(this.mojRoditelj instanceof PretragaProzor) {
+			((PretragaProzor) this.mojRoditelj).alati = selektovani;
+		}else {
+			this.korNalog.setOprema(selektovani);
 		}
-		this.korNalog.setOprema(selektovani);
 		this.mojRoditelj.setVisible(true);
 		dispose();
 		
