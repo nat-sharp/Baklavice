@@ -110,7 +110,7 @@ public class OpcijeKRecepti {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
-				//natalija
+				PretragaProzor p = new PretragaProzor();
 			}
 		};btnNewButton_4.addActionListener(a6);
 		

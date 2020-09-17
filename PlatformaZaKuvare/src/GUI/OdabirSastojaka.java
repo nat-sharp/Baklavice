@@ -17,15 +17,15 @@ import Klase.Sastojak;
 import Menadzeri.MenadzerSastojaka;
 
 public class OdabirSastojaka extends JFrame {
-	
+
 	private static final long serialVersionUID = 1L;
 	private JFrame mojRoditelj;
 	private ArrayList<JCheckBox> lista;
 	private ArrayList<Sastojak> selektovani;
 	private KorisnickiNalog korNalog;
 	private ArrayList<Sastojak> sastojci;
-	
-	public OdabirSastojaka(JFrame roditelj, KorisnickiNalog korNalog) {
+
+	public OdabirSastojaka(JFrame roditelj, KorisnickiNalog korNalog, ArrayList<Sastojak> stari) {
 		this.selektovani = new ArrayList<Sastojak>();
 		this.korNalog = korNalog;
 		this.mojRoditelj = roditelj;
@@ -37,25 +37,30 @@ public class OdabirSastojaka extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setResizable(false);
-		
+
 		setTitle("    Odabir sastojaka:");
-		
+
 		JPanel glavni = new JPanel(new GridLayout(sastojci.size(), 1));
 		for (Sastojak s : sastojci) {
 			JCheckBox c = new JCheckBox(s.getNaziv());
+			if(!stari.equals(null)) {
+				if(stari.contains(s)) {
+					c.setSelected(true);
+				}
+			}
 			lista.add(c);
 			glavni.add(c);
 		}
 		add(glavni, BorderLayout.CENTER);
 		
 		JButton btnOk = new JButton("OK");
-		JPanel pnl = new JPanel(new GridLayout(1,3));
+		JPanel pnl = new JPanel(new GridLayout(1, 3));
 		pnl.add(new JLabel());
 		pnl.add(new JLabel());
 		pnl.add(btnOk);
-		
+
 		btnOk.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				OdabirSastojaka.this.kraj();
@@ -64,17 +69,18 @@ public class OdabirSastojaka extends JFrame {
 		add(pnl, BorderLayout.SOUTH);
 		setVisible(true);
 	}
-	
+
 	private void kraj() {
 		int i = 0;
 		for (JCheckBox b : lista) {
-			if(b.isSelected()) {
+			if (b.isSelected()) {
 				selektovani.add(sastojci.get(i));
 			}
 			i++;
-		}if(this.mojRoditelj instanceof PretragaProzor) {
+		}
+		if (this.mojRoditelj instanceof PretragaProzor) {
 			((PretragaProzor) this.mojRoditelj).sastojci = selektovani;
-		}else {
+		} else {
 			this.korNalog.setSastojci(selektovani);
 		}
 		this.mojRoditelj.setVisible(true);

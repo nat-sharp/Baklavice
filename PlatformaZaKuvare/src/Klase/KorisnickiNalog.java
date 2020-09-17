@@ -13,14 +13,14 @@ public class KorisnickiNalog {
 	private TipKorisnika vrstaKorisnika;	
 	private int brPratioca = 0;
 	private int brMedalja = 0;
-	private List<Alat> oprema;
+	private ArrayList<Alat> oprema;
 	private Osoba korisnik;
 	private List<KorisnickiNalog> praceniKorisnici;	
 	private List<Kategorija> praceneKategorije;
 	private List<Recept> obelezeniRecepti;	
 	private List<Recept> autorskiRecepti; //knjiga recepata korisnika		
 	private List<Ocena> ocenjeniRecepti;	
-	private List<Sastojak> sastojci;
+	private ArrayList<Sastojak> sastojci;
 	
 	public KorisnickiNalog() {
 		this.korIme = "";
@@ -35,9 +35,9 @@ public class KorisnickiNalog {
 	}
 	
 	public KorisnickiNalog(String korIme, String lozinka, TipKorisnika vrstaKorisnika, int brPratioca, int brMedalja,
-			List<Alat> oprema, Osoba korisnik, List<KorisnickiNalog> praceniKorisnici,
+			ArrayList<Alat> oprema, Osoba korisnik, List<KorisnickiNalog> praceniKorisnici,
 			List<Kategorija> praceneKategorije, List<Recept> obelezeniRecepti, List<Recept> autorskiRecepti,
-			List<Ocena> ocenjeniRecepti, List<Sastojak> sastojci) {
+			List<Ocena> ocenjeniRecepti, ArrayList<Sastojak> sastojci) {
 		this.korIme = korIme;
 		this.lozinka = lozinka;
 		this.vrstaKorisnika = vrstaKorisnika;
@@ -93,9 +93,6 @@ public class KorisnickiNalog {
 		this.brMedalja = brMedalja;
 	}
 
-	public List<Alat> getNepromenljivuOprema() {
-		return Collections.unmodifiableList(oprema);
-	}
 
 	public void setOprema(ArrayList<Alat> oprema) {
 		this.oprema = oprema;
@@ -197,11 +194,7 @@ public class KorisnickiNalog {
 		this.ocenjeniRecepti.add(o);
 	}
 	
-	public List<Sastojak> getNepromenljiviSastojci() {
-		return Collections.unmodifiableList(sastojci);
-	}
-
-	public void setSastojci(List<Sastojak> sastojci) {
+	public void setSastojci(ArrayList<Sastojak> sastojci) {
 		this.sastojci = sastojci;
 	}
 	
@@ -222,7 +215,7 @@ public class KorisnickiNalog {
 	//*** izmeniKomentar je samo kom.setTekst
 
 	//*** Zasto je private u klasnom? *** I zasto postoje dve funkcije? ***
-	public boolean izmenaRecepta(Recept r, String nazivRec, List<Alat> oprema, String opisPripreme, Tezina tezina, int duzinaMin, String imgPath,
+	public boolean izmenaRecepta(Recept r, String nazivRec, ArrayList<Alat> oprema, String opisPripreme, Tezina tezina, int duzinaMin, String imgPath,
 			String videoLink, int brMedalja, KorisnickiNalog autor, Recenzija recenzija, List<Ocena> ocene,
 			List<Kolicina> kolicineSastojaka, List<Kategorija> kategorije) {
 		//provera da li su uneta sva obavezna polja
@@ -266,7 +259,7 @@ public class KorisnickiNalog {
 	}
 		
 	
-	public boolean kreirajRecept(String nazivRec, List<Alat> oprema, String opisPripreme, Tezina tezina, int duzinaMin, String imgPath,
+	public boolean kreirajRecept(String nazivRec, ArrayList<Alat> oprema, String opisPripreme, Tezina tezina, int duzinaMin, String imgPath,
 			String videoLink, int brMedalja, KorisnickiNalog autor, Recenzija recenzija, List<Ocena> ocene,
 			List<Kolicina> kolicineSastojaka, List<Kategorija> kategorije) {
 		//provera da li su uneta sva obavezna polja
@@ -411,7 +404,7 @@ public class KorisnickiNalog {
 		return true;
 	}
 
-	public List<Alat> getOprema() {
+	public ArrayList<Alat> getOprema() {
 		return oprema;
 	}
 
@@ -435,7 +428,7 @@ public class KorisnickiNalog {
 		return ocenjeniRecepti;
 	}
 
-	public List<Sastojak> getSastojci() {
+	public ArrayList<Sastojak> getSastojci() {
 		return sastojci;
 	}
 	

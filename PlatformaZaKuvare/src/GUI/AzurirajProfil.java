@@ -4,6 +4,7 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 import javax.swing.ImageIcon;
@@ -120,16 +121,13 @@ public class AzurirajProfil {
 		frameA.getContentPane().add(lblNewLabel_17);
 		
 		
-		
-		
-		
 		JButton btnNewButton_3 = new JButton("Promjena alata");
 		btnNewButton_3.setBounds(47, 521, 150, 23);
 		frameA.getContentPane().add(btnNewButton_3);
 		ActionListener pa = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//CINI MI SE DA JE MILICA NESTO RADILA 
+				OdabirAlata o = new OdabirAlata(AzurirajProfil.this.frameA ,kn, kn.getOprema() );
 			}
 		};btnNewButton_3.addActionListener(pa);
 		
@@ -140,7 +138,7 @@ public class AzurirajProfil {
 		ActionListener ps = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//CINI MI SE DA JE MILICA NESTO RADILA 
+				OdabirSastojaka o = new OdabirSastojaka(AzurirajProfil.this.frameA, kn, kn.getSastojci());
 			}
 		};btnNewButton_4.addActionListener(ps);
 		

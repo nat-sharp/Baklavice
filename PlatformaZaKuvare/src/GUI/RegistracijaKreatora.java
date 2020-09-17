@@ -164,7 +164,7 @@ public class RegistracijaKreatora extends JFrame {
 		birajSastojke.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new OdabirSastojaka(RegistracijaKreatora.this, kn);			
+				new OdabirSastojaka(RegistracijaKreatora.this, kn,null);
 			}
 		});
 		

@@ -11,8 +11,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import Klase.PlatformaZaKuvare;
 
 import java.awt.BorderLayout;
 
@@ -125,8 +128,11 @@ public class ProfilModer {
 		ActionListener a1 = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.setVisible(false);
-				//Natalija
+				//frame.setVisible(false);
+				PlatformaZaKuvare.getInstance().getInstance().generisanjeTLK(3);
+				JOptionPane.showMessageDialog(ProfilModer.this.frame, 
+						  "Izgenerisali ste top listu korisnika. :)", "", JOptionPane.INFORMATION_MESSAGE);
+			
 			}
 		};
 		btnNewButton_1.addActionListener(a1);
@@ -140,8 +146,10 @@ public class ProfilModer {
 		ActionListener a2 = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.setVisible(false);
-				//Natalija
+				//frame.setVisible(false);
+				PlatformaZaKuvare.getInstance().generisanjeTLR(3);
+				JOptionPane.showMessageDialog(ProfilModer.this.frame, 
+						  "Izgenerisali ste top listu recepata. :)", "", JOptionPane.INFORMATION_MESSAGE);
 			}
 		};btnNewButton_2.addActionListener(a2);
 		frame.getContentPane().add(btnNewButton_2);
@@ -155,7 +163,7 @@ public class ProfilModer {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
-				//Natalija
+				PretragaProzor p = new PretragaProzor();
 			}
 		};btnNewButton_3.addActionListener(a3);
 		frame.getContentPane().add(btnNewButton_3);

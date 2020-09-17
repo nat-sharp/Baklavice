@@ -135,7 +135,7 @@ public class PretragaProzor extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				OdabirSastojaka o = new OdabirSastojaka(PretragaProzor.this, null);
+				OdabirSastojaka o = new OdabirSastojaka(PretragaProzor.this, null, null);
 			}
 			
 		});
@@ -156,8 +156,7 @@ public class PretragaProzor extends JFrame{
 				Tezina t = (Tezina) combo.getSelectedItem();
 				ArrayList<Recept> rezultati = (ArrayList<Recept>) PlatformaZaKuvare.getInstance().pretraga(alati
 						, e1.getText(), t, PretragaProzor.this.getMin(), sastojci);
-				
-				//prikazi listurezultata
+				RezultatPretrage rp = new RezultatPretrage(rezultati);
 			}
 			
 		});

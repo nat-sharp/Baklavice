@@ -169,7 +169,7 @@ public class ProfilKorisnika {
 		ActionListener tlr = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//topListe
+				TLRFrejm t = new TLRFrejm(Menadzeri.MenadzerTLR.getInstance().getTopListeRecepata().get(-1));
 			}
 		};btnNewButton_3.addActionListener(tlr);
 		
@@ -183,7 +183,7 @@ public class ProfilKorisnika {
 		ActionListener tlk = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//tlk
+				TLKFrejm m = new TLKFrejm(Menadzeri.MenadzerTLK.getInstance().getTopListeKreatora().get(-1));
 			}
 		};btnNewButton_4.addActionListener(tlk);
 		
