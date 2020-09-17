@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import Menadzeri.MenadzerRecepta;
+
 public class TopListaRecepata {
 	private LocalDate datum;
 	private List<Recept>recepti;
@@ -36,11 +38,15 @@ public class TopListaRecepata {
 		}
 		return false;
 	}
-	public Boolean izbrisi(Recept r) {
-		if(!sadrzan(r)) {
-			return false;
+	public Boolean izbrisi(Recept reci) {
+		int i = 0;
+		for (Recept r : recepti) {
+			if (r.equals(reci)) break;
+			i++;
 		}
-		recepti.remove(r);
+		if (i == recepti.size()) return false;
+		recepti.remove(i);
+		recepti.add(i, MenadzerRecepta.getInstance().getNNRecept());
 		return true;
 	}
 

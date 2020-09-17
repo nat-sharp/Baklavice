@@ -11,10 +11,12 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import Klase.Alat;
 import Klase.Kolicina;
 import Klase.KorisnickiNalog;
 import Klase.Recenzija;
@@ -34,6 +36,7 @@ public class IzmenaRecepta extends JFrame {
 	public IzmenaRecepta(KorisnickiNalog kn, Recept r) {
 		this.korNalog = kn;
 		this.recept = r;
+		this.pomocniZaAlat = new KorisnickiNalog();
 		
 		setSize(400, 400);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -105,8 +108,7 @@ public class IzmenaRecepta extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new OdabirAlata(IzmenaRecepta.this, IzmenaRecepta.this.pomocniZaAlat);
-				
+				new OdabirAlata(IzmenaRecepta.this, IzmenaRecepta.this.pomocniZaAlat, (ArrayList<Alat>) IzmenaRecepta.this.recept.getOprema());
 			}
 		});
 		JPanel panAlat = new JPanel(new GridLayout(1, 2));
@@ -167,19 +169,22 @@ public class IzmenaRecepta extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				IzmenaRecepta.this.recept.setNazivRec(ime.getText());
-				IzmenaRecepta.this.recept.setDuzinaMin(Integer.parseInt(vreme.getText()));
-				IzmenaRecepta.this.recept.setOpisPripreme(priprema.getText());
-				IzmenaRecepta.this.recept.setOprema(IzmenaRecepta.this.pomocniZaAlat.getOprema());
-//				video link i image link????
-				if (IzmenaRecepta.this.korNalog.getVrstaKorisnika() != TipKorisnika.KREATOR) {
-					IzmenaRecepta.this.recept.setRecenzija(reci);
-					MenadzerRecepta.getInstance().izbrisiReceptNaCekanju(IzmenaRecepta.this.recept);
-					MenadzerRecepta.getInstance().dodajRecept(IzmenaRecepta.this.recept);
-					IzmenaRecepta.this.recept.getAutor().dodajAutorskiRecept(IzmenaRecepta.this.recept);
+				if (!IzmenaRecepta.this.recept.setNazivRec(ime.getText())) {
+					JOptionPane.showMessageDialog(IzmenaRecepta.this, "Odabali ste iskoriscen naziv recepta", "Greska", JOptionPane.ERROR_MESSAGE);
 				}
-				else {} //sta ako korisnik izmeni svoj recept?
-				IzmenaRecepta.this.dispose();
+				else {
+					IzmenaRecepta.this.recept.setDuzinaMin(Integer.parseInt(vreme.getText()));
+					IzmenaRecepta.this.recept.setOpisPripreme(priprema.getText());
+					IzmenaRecepta.this.recept.setOprema(IzmenaRecepta.this.pomocniZaAlat.getOprema());
+//					video link i image link????
+					if (IzmenaRecepta.this.korNalog.getVrstaKorisnika() != TipKorisnika.KREATOR) {
+						IzmenaRecepta.this.recept.setRecenzija(reci);
+						MenadzerRecepta.getInstance().izbrisiReceptNaCekanju(IzmenaRecepta.this.recept);
+						MenadzerRecepta.getInstance().dodajRecept(IzmenaRecepta.this.recept);
+						IzmenaRecepta.this.recept.getAutor().dodajAutorskiRecept(IzmenaRecepta.this.recept);
+					}
+					IzmenaRecepta.this.dispose();
+				}
 			}
 		});
 		kraj.add(sacuvaj);

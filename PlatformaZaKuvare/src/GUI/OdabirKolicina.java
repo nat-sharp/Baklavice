@@ -34,6 +34,8 @@ public class OdabirKolicina extends JDialog {
 	public OdabirKolicina(Recept rec, boolean dodavanjeNovog, boolean obavezan, ArrayList<Sastojak> iskorisceni) {
 		this.listaSastojaka = new ArrayList<JCheckBox>();
 		this.sastojci = new ArrayList<Sastojak>();
+		this.listaMera = new ArrayList<OdabirKolicina.ComboBoxMernihJedinica>();
+		this.listaKolicine = new ArrayList<JTextField>();
 		this.recept = rec;
 		this.obavezanNe = obavezan;
 
@@ -96,6 +98,7 @@ public class OdabirKolicina extends JDialog {
 		private static final long serialVersionUID = 1L;
 		
 		public ComboBoxMernihJedinica() {
+			super();
 			addItem(MernaJedinica.MG);
 			addItem(MernaJedinica.G);
 			addItem(MernaJedinica.KG);

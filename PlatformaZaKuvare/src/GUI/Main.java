@@ -15,6 +15,10 @@ import Klase.Recept;
 import Klase.Sastojak;
 import Klase.Tezina;
 import Klase.TipKorisnika;
+import Menadzeri.MenadzerKNaloga;
+import Menadzeri.MenadzerKategorija;
+import Menadzeri.MenadzerRecepta;
+import Menadzeri.MenadzerSastojaka;
 
 public class Main {
 	public static void main(String[] args) {
@@ -81,6 +85,15 @@ public class Main {
 		//new PrikazObelezenihRecepata(kn);
 		
 		//new DodavanjeRecepta();
-		new IzmenaRecepta(kn, r);
+		MenadzerRecepta.getInstance().dodajRecept(r);
+		MenadzerRecepta.getInstance().dodajReceptNaCekanju(r);
+		MenadzerKategorija.getInstance().dodajKategoriju(l);
+		MenadzerKNaloga.getInstance().dodajNalog(kn);
+		MenadzerKNaloga.getInstance().dodajNalog(kk);
+		MenadzerSastojaka.getInstance().dodajSastojak(s12);
+		MenadzerSastojaka.getInstance().dodajSastojak(s);
+		//new IzmenaRecepta(kn, r);
+
+		new DodavanjeRecepta();
 	}
 }

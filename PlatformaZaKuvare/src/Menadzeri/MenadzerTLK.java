@@ -13,7 +13,6 @@ public class MenadzerTLK {
 	
 	private MenadzerTLK() {
 		topListeKreatora = new ArrayList<TopListaKreatora>();
-		//tello
 	}
 	public static MenadzerTLK getInstance() {
 		if (instanca == null) {

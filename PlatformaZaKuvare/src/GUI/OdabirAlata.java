@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 
 import Klase.Alat;
 import Klase.KorisnickiNalog;
+import Klase.PlatformaZaKuvare;
 
 public class OdabirAlata extends JFrame{
 	private JFrame mojRoditelj;
@@ -32,6 +33,29 @@ public class OdabirAlata extends JFrame{
 		this.korNalog = korNalog;
 		this.mojRoditelj = roditelj;
 
+		this.crtanje();
+	}
+	
+	public OdabirAlata(JFrame rodi, KorisnickiNalog korNalog, ArrayList<Alat> stari) {
+		this.selektovani = new ArrayList<Alat>();
+		this.korNalog = korNalog;
+		this.mojRoditelj = rodi;
+		
+		for (Alat a : stari) {
+			switch (a) {
+			case MIKROTALASNA: ch1.setSelected(true);
+			case BLENDER: ch2.setSelected(true);
+			case KALUP: ch3.setSelected(true);
+			case MIKSER: ch4.setSelected(true);
+			case SOKOVNIK: ch5.setSelected(true);
+			default: ch6.setSelected(true);
+			}
+		}
+		
+		this.crtanje();
+	}
+	
+	private void crtanje() {
 		this.mojRoditelj.setVisible(false);
 		setSize(400, 400);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -58,7 +82,6 @@ public class OdabirAlata extends JFrame{
 		});
 		add(pnl, BorderLayout.SOUTH);
 		setVisible(true);
-		
 	}
 
 	protected void kraj() {
@@ -79,9 +102,11 @@ public class OdabirAlata extends JFrame{
 		}
 		if(ch6.isSelected()) {
 			selektovani.add(Alat.TOSTER);
-		}if(this.mojRoditelj instanceof PretragaProzor) {
+		}
+		if(this.mojRoditelj instanceof PretragaProzor) {
 			((PretragaProzor) this.mojRoditelj).alati = selektovani;
-		}else {
+		}
+		else {
 			this.korNalog.setOprema(selektovani);
 		}
 		this.mojRoditelj.setVisible(true);

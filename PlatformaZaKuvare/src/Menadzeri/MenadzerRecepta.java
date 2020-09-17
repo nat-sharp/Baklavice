@@ -8,16 +8,28 @@ import Klase.Kategorija;
 import Klase.KorisnickiNalog;
 import Klase.Ocena;
 import Klase.Recept;
+import Klase.TopListaRecepata;
 
 public class MenadzerRecepta {
 	//TLR, kategorija, recept*2, pzk*2
 	private static MenadzerRecepta instanca;
 	private List<Recept> receptiNaCekanju;
 	private List<Recept> recepti;
+	private Recept NNRecept;
+	
+	public Recept getNNRecept() {
+		return NNRecept;
+	}
+	public void setNNRecept(Recept nNRecept) {
+		NNRecept = nNRecept;
+	}
 	
 	private MenadzerRecepta() {
 		this.recepti = new ArrayList<Recept>();
-		//telo
+		this.receptiNaCekanju = new ArrayList<Recept>();
+		this.NNRecept = new Recept();
+		this.NNRecept.setAutor(MenadzerKNaloga.getInstance().NN);
+		this.NNRecept.setNazivRec("Izbrisan recept");
 	}
 	public static MenadzerRecepta getInstance() {
 		if (instanca == null) instanca = new MenadzerRecepta();
@@ -110,7 +122,7 @@ public class MenadzerRecepta {
 			}recept.getAutor().setOcenjeniRecepti(klonirani);
 		}
 		
-		
+		for (TopListaRecepata tlr : MenadzerTLR.getInstance().getTopListeRecepata()) tlr.izbrisi(recept);
 		//mislim da iz top liste recepata ne treba da brisemo, ne znam kako cemo ih prikazivati, mozda po datumima
 		return true;
 	}

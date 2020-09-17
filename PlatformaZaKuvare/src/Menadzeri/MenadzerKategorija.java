@@ -15,7 +15,6 @@ public class MenadzerKategorija {
 	
 	private MenadzerKategorija() {
 		kategorije = new ArrayList<Kategorija>();
-		//telo
 	}
 	
 	public static MenadzerKategorija getInstance() {
@@ -55,7 +54,7 @@ public class MenadzerKategorija {
 				r.getKategorije().remove(k);
 			}
 		}
-		
+		kategorije.remove(k);
 		return true;
 	}
 }

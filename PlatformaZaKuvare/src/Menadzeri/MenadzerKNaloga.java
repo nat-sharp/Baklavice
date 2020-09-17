@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import Klase.Kategorija;
 import Klase.KorisnickiNalog;
 import Klase.Recept;
 import Klase.TipKorisnika;
+import Klase.TopListaKreatora;
 
 public class MenadzerKNaloga {
 	//osoba, TLK, kategorija, korNalog, PZK
@@ -17,7 +19,6 @@ public class MenadzerKNaloga {
 	
 	private MenadzerKNaloga() {
 		korNalozi = new ArrayList<KorisnickiNalog>();
-		//telo
 	}
 	public static MenadzerKNaloga getInstance() {
 		if (instanca == null) {
@@ -49,10 +50,14 @@ public class MenadzerKNaloga {
 		*/
 		for(Recept r : MenadzerRecepta.getInstance().getRecepti()) {
 			if(r.getRecenzija().getModerator().equals(kNalog)) {
-				r.getRecenzija().setModerator(null); //znaci trebala bi se postavitit recenzija na null i onda poslati na cekanje
+				r.getRecenzija().setModerator(MenadzerKNaloga.getInstance().NN); //znaci trebala bi se postavitit recenzija na null i onda poslati na cekanje
 			}
 		}
-		
+		for (TopListaKreatora tlk : MenadzerTLK.getInstance().getTopListeKreatora()) {
+			tlk.izbrisi(kNalog);
+		}
+		for(Kategorija l : MenadzerKategorija.getInstance().getKategorije()) l.izbrisiPratioca(kNalog);
+		for (KorisnickiNalog kn : MenadzerKNaloga.getInstance().getKorNalozi()) kn.izbrisiPracenogKorisnika(kNalog);
 		//korisnik kreator se koristi korisnickim nalogom
 		//vidi kako je odradjen korisnik kreator, tj njegovo brisanje i zalijepi tu ili vidi u osobama
 		return true;

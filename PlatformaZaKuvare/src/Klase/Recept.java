@@ -34,6 +34,7 @@ public class Recept {
 	public Recept(String nazivRec, List<Alat> oprema, String opisPripreme, Tezina tezina, int duzinaMin, String imgPath,
 			String videoLink, int brMedalja, KorisnickiNalog autor, Recenzija recenzija, List<Ocena> ocene,
 			List<Kolicina> kolicineSastojaka, List<Kategorija> kategorije) {
+		this.autor = autor;
 		this.nazivRec = nazivRec;
 		this.oprema = oprema;
 		this.opisPripreme = opisPripreme;
@@ -42,7 +43,6 @@ public class Recept {
 		this.imgPath = imgPath;
 		this.videoLink = videoLink;
 		this.brMedalja = brMedalja;
-		this.autor = autor;
 		this.recenzija = recenzija;
 		this.ocene = ocene;
 		this.kolicineSastojaka = kolicineSastojaka;
@@ -53,8 +53,10 @@ public class Recept {
 		return nazivRec;
 	}
 	
-	public void setNazivRec(String nazivRec) {
+	public boolean setNazivRec(String nazivRec) {
+		if (!this.proveraImena(nazivRec)) return false;
 		this.nazivRec = nazivRec;
+		return true;
 	}
 
 	public List<Alat> getNepromenljivuOprema() {
@@ -201,5 +203,11 @@ public class Recept {
 		return kategorije;
 	}
 	
+	private boolean proveraImena(String ime) {
+		if (this.autor == null) return false;
+		for (Recept r : this.autor.getAutorskiRecepti())
+			if (r.getNazivRec().equals(ime)) return false;
+		return true;
+	}
 	
 }

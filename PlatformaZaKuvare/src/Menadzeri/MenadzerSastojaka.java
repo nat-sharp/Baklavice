@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import Klase.KorisnickiNalog;
 import Klase.Sastojak;
 
 public class MenadzerSastojaka {
@@ -42,6 +43,12 @@ public class MenadzerSastojaka {
 			return false;
 		}
 		this.sastojci.remove(s);
+		for (KorisnickiNalog k : MenadzerKNaloga.getInstance().getKorNalozi()) {
+			k.izbrisiSastojak(s);
+		}
+		for (Sastojak pomocni : this.sastojci) {
+			pomocni.izbrisiZamjenski(s);
+		}
 		return true;
 	}
 }

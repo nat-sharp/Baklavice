@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -122,13 +123,17 @@ public class DodavanjeRecepta extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				DodavanjeRecepta.this.recept.setNazivRec(ime.getText());
-				DodavanjeRecepta.this.recept.setDuzinaMin(Integer.parseInt(vreme.getText()));
-				DodavanjeRecepta.this.recept.setOpisPripreme(priprema.getText());
-				DodavanjeRecepta.this.recept.setOprema(DodavanjeRecepta.this.pomocniZaAlat.getOprema());
-//				video link i image link????
-				MenadzerRecepta.getInstance().dodajReceptNaCekanju(DodavanjeRecepta.this.recept);
-				DodavanjeRecepta.this.dispose();
+				if (!DodavanjeRecepta.this.recept.setNazivRec(ime.getText())) {
+					JOptionPane.showMessageDialog(DodavanjeRecepta.this, "Odabali ste iskoriscen naziv recepta", "Greska", JOptionPane.ERROR_MESSAGE);
+				}
+				else {
+					DodavanjeRecepta.this.recept.setDuzinaMin(Integer.parseInt(vreme.getText()));
+					DodavanjeRecepta.this.recept.setOpisPripreme(priprema.getText());
+					DodavanjeRecepta.this.recept.setOprema(DodavanjeRecepta.this.pomocniZaAlat.getOprema());
+//					video link i image link????
+					MenadzerRecepta.getInstance().dodajReceptNaCekanju(DodavanjeRecepta.this.recept);
+					DodavanjeRecepta.this.dispose();
+				}
 			}
 		});
 		kraj.add(sacuvaj);

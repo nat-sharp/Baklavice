@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import Menadzeri.MenadzerKNaloga;
+import Menadzeri.MenadzerRecepta;
+
 public class TopListaKreatora {
 	private LocalDate datum;
 	private List<KorisnickiNalog>korisnici;
@@ -31,7 +34,7 @@ public class TopListaKreatora {
 		this.korisnici = korisnici;
 	}
 	//tostring, brisi , sadrzan
-	public Boolean sadrzan(KorisnickiNalog kn) {
+	public boolean sadrzan(KorisnickiNalog kn) {
 		for(KorisnickiNalog k : korisnici) {
 			if(k.equals(kn)) {
 				return true;
@@ -39,11 +42,15 @@ public class TopListaKreatora {
 		}
 		return false;
 	}
-	public Boolean izbrisi(KorisnickiNalog kn) {
-		if(!sadrzan(kn)) {
-			return false;
+	public boolean izbrisi(KorisnickiNalog kn) {
+		int i = 0;
+		for (KorisnickiNalog k : korisnici) {
+			if (k.equals(kn)) break;
+			i++;
 		}
-		korisnici.remove(kn);
+		if (i == korisnici.size()) return false;
+		korisnici.remove(i);
+		korisnici.add(i, MenadzerKNaloga.getInstance().NN);
 		return true;
 	}
 	

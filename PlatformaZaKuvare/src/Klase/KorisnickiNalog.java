@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import Menadzeri.MenadzerRecepta;
+import Menadzeri.MenadzerTLR;
+
 public class KorisnickiNalog {
 	private String korIme;
 	private String lozinka;
@@ -94,7 +97,7 @@ public class KorisnickiNalog {
 		return Collections.unmodifiableList(oprema);
 	}
 
-	public void setOprema(List<Alat> oprema) {
+	public void setOprema(ArrayList<Alat> oprema) {
 		this.oprema = oprema;
 	}
 	
@@ -176,6 +179,9 @@ public class KorisnickiNalog {
 	
 	//*** Trebalo bi dodati brisanje iz svih delova platforme ***
 	public boolean izbrisiAutorskiRecept(Recept r) {
+		MenadzerRecepta.getInstance().izbrisiRecept(r);
+		for (Kategorija k : r.getKategorije()) k.izbrisiRecept(r);
+		for (TopListaRecepata tlr : MenadzerTLR.getInstance().getTopListeRecepata()) tlr.izbrisi(r);
 		return this.autorskiRecepti.remove(r);
 	}
 	

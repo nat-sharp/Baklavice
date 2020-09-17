@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import Klase.Recept;
 import Klase.TopListaRecepata;
 
 public class MenadzerTLR {
@@ -13,7 +14,6 @@ public class MenadzerTLR {
 	
 	private MenadzerTLR() {
 		topListeRecepata = new ArrayList<TopListaRecepata>();
-		//tello
 	}
 	public static MenadzerTLR getInstance() {
 		if (instanca == null) {
@@ -45,5 +45,6 @@ public class MenadzerTLR {
 		this.topListeRecepata.remove(lista);
 		return true;
 	}
+	
 	
 }

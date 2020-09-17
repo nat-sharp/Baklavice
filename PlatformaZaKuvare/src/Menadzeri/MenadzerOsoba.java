@@ -15,7 +15,6 @@ public class MenadzerOsoba {
 	
 	private MenadzerOsoba() {
 		osobe = new ArrayList<Osoba>();
-		//telo
 	}
 	public static MenadzerOsoba getInstance() {
 		if (instanca == null) {
