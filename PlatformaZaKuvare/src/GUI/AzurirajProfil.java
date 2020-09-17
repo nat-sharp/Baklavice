@@ -213,7 +213,7 @@ public class AzurirajProfil {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frameA.dispose();
-				ProfilKorisnika p = new ProfilKorisnika();
+				ProfilKorisnika p = new ProfilKorisnika(kn);
 			}
 		};btnNewButton_6.addActionListener(nazad);
 		btnNewButton_6.setBounds(339, 617, 89, 23);

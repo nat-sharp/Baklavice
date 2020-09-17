@@ -17,9 +17,8 @@ import javax.swing.JTextField;
 public class ProfilKorisnika {
 	private JFrame frame;
 	JLabel lblNewLabel;
-	private Image slika;
 	Menadzeri.MenadzerKNaloga mkn = Menadzeri.MenadzerKNaloga.getInstance();
-	
+	Image slika;
 	LocalDate lk = LocalDate.now();
 	Klase.Mesto m = new Klase.Mesto("NS", 12);
 	Klase.Osoba o = new Klase.Osoba("Ante", "Antic", lk, "123", Klase.Pol.MUSKI, m, null);
@@ -27,12 +26,17 @@ public class ProfilKorisnika {
 	
 	
 	public ProfilKorisnika() {
-		initialize();
+		initialize(kn);
+	}
+	
+	public ProfilKorisnika(Klase.KorisnickiNalog kn) {	
+		initialize(kn);
 	}
 	
 	
+
 	
-	private void initialize() {
+	private void initialize(Klase.KorisnickiNalog kn) {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 741);
 		frame.setResizable(false);
@@ -42,7 +46,7 @@ public class ProfilKorisnika {
 		frame.setTitle("Vas profil :)");
 		
 		
-		lblNewLabel = new JLabel("New label");
+		lblNewLabel = new JLabel();
 		slika = new ImageIcon(getClass().getResource("person.png")).getImage();
 		lblNewLabel.setIcon(new ImageIcon(slika));
 		lblNewLabel.setBounds(145, 11, 140, 125);
@@ -148,7 +152,8 @@ public class ProfilKorisnika {
 		JButton btnNewButton_2 = new JButton("Rad sa receptima");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//povezi sa necim sto je Natalija napravila pretraga recepata
+				frame.dispose();
+				OpcijeKRecepti o = new OpcijeKRecepti(kn);
 			}
 		});
 		btnNewButton_2.setBounds(31, 512, 163, 23);
@@ -217,8 +222,6 @@ public class ProfilKorisnika {
 		frame.setVisible(true);
 		
 	}
-	
-
 	
 	
 	

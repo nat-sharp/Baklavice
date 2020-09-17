@@ -43,7 +43,7 @@ public class PrikazSastojaka {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
-				ProfilKorisnika p = new ProfilKorisnika();
+				ProfilKorisnika p = new ProfilKorisnika(kn);
 			}
 		});
 		btnNewButton.setBounds(303, 527, 89, 23);

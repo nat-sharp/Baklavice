@@ -31,21 +31,21 @@ public class ProfilModer {
 	
 	
 	
-	public ProfilModer() {
-		initialize();
+	public ProfilModer(Klase.KorisnickiNalog kn) {
+		initialize(kn);
 	}
 
-	/*
-	private void initialize() {
+	
+	private void initialize(Klase.KorisnickiNalog kn) {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 639);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		lblNewLabel = new JLabel("New label");
+		lblNewLabel = new JLabel();
 		slika = new ImageIcon(getClass().getResource("person.png")).getImage();
 		lblNewLabel.setIcon(new ImageIcon(slika));
-		lblNewLabel.setBounds(145, 11, 139, 98);
+		lblNewLabel.setBounds(145, 11, 140, 125);
 		frame.getContentPane().add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Korisnicko ime ");
@@ -110,7 +110,7 @@ public class ProfilModer {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
-				//Prijava p = new Prijava();
+				//PrikazRecepataNaCekanju p = new PrikazRecepataNaCekanju();
 			}
 		};
 		btnNewButton.addActionListener(a);
@@ -126,7 +126,7 @@ public class ProfilModer {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
-				//Prijava p = new Prijava();
+				//Natalija
 			}
 		};
 		btnNewButton_1.addActionListener(a1);
@@ -141,7 +141,7 @@ public class ProfilModer {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
-				//Prijava p = new Prijava();
+				//Natalija
 			}
 		};btnNewButton_2.addActionListener(a2);
 		frame.getContentPane().add(btnNewButton_2);
@@ -155,7 +155,7 @@ public class ProfilModer {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
-				//Prijava p = new Prijava();
+				//Natalija
 			}
 		};btnNewButton_3.addActionListener(a3);
 		frame.getContentPane().add(btnNewButton_3);
@@ -177,63 +177,9 @@ public class ProfilModer {
 		
 		frame.setVisible(true);
 		
-	}*/
-	
-	
-	
-	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 639);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setBounds(161, 21, 107, 88);
-		frame.getContentPane().add(lblNewLabel_1);
-		
-		JTextField textField = new JTextField();
-		textField.setBounds(240, 183, 96, 20);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
-		
-		JTextField textField_1 = new JTextField();
-		textField_1.setBounds(253, 243, 96, 20);
-		frame.getContentPane().add(textField_1);
-		textField_1.setColumns(10);
-		
-		JTextField textField_2 = new JTextField();
-		textField_2.setBounds(253, 290, 96, 20);
-		frame.getContentPane().add(textField_2);
-		textField_2.setColumns(10);
-		
-		JTextField textField_3 = new JTextField();
-		textField_3.setBounds(253, 183, 96, 20);
-		frame.getContentPane().add(textField_3);
-		textField_3.setColumns(10);
-		
-		JTextField textField_4 = new JTextField();
-		textField_4.setBounds(253, 243, 96, 20);
-		frame.getContentPane().add(textField_4);
-		textField_4.setColumns(10);
-		
-		JTextField textField_5 = new JTextField();
-		textField_5.setBounds(253, 290, 96, 20);
-		frame.getContentPane().add(textField_5);
-		textField_5.setColumns(10);
-		
-		JTextField textField_6 = new JTextField();
-		textField_6.setBounds(253, 183, 96, 20);
-		frame.getContentPane().add(textField_6);
-		textField_6.setColumns(10);
-		
-		JTextField textField_7 = new JTextField();
-		textField_7.setBounds(253, 243, 96, 20);
-		frame.getContentPane().add(textField_7);
-		textField_7.setColumns(10);
-		
-		frame.setVisible(true);
-		
-		
 	}
+	
+	
+
 	
 }

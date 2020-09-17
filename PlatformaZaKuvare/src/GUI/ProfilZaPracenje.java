@@ -1,6 +1,8 @@
 package GUI;
 
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.time.LocalDate;
 
 import javax.swing.ImageIcon;
@@ -9,26 +11,30 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import Klase.PlatformaZaKuvare;
+
 public class ProfilZaPracenje  {
 		JFrame frameZ;
 		JLabel lblNewLabel;
-		private Image slika;
+		Image slika;
 		
 		Menadzeri.MenadzerKNaloga mkn = Menadzeri.MenadzerKNaloga.getInstance();
+		/*
 		LocalDate lk = LocalDate.now();
 		Klase.Mesto m = new Klase.Mesto("NS", 12);
 		Klase.Osoba o = new Klase.Osoba("Ante", "Antic", lk, "123", Klase.Pol.MUSKI, m, null);
 		Klase.KorisnickiNalog kn = new Klase.KorisnickiNalog("ante22", "1234", Klase.TipKorisnika.MODERATOR, 22, 10, null, o, null, null, null, null, null,null);
+		*/
 		
 		
-	public ProfilZaPracenje(){
+	public ProfilZaPracenje(Klase.KorisnickiNalog kn){
 		frameZ = new JFrame();
 		frameZ.setBounds(100, 100, 450, 496);
 		frameZ.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frameZ.getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setBounds(25, 25, 128, 102);
+		JLabel lblNewLabel_1 = new JLabel();
+		lblNewLabel_1.setBounds(25, 25, 140, 125);
 		slika = new ImageIcon(getClass().getResource("person.png")).getImage();
 		lblNewLabel_1.setIcon(new ImageIcon(slika));
 		frameZ.getContentPane().add(lblNewLabel_1);
@@ -64,14 +70,37 @@ public class ProfilZaPracenje  {
 		JButton btnNewButton = new JButton("Recepti");
 		btnNewButton.setBounds(52, 146, 89, 23);
 		frameZ.getContentPane().add(btnNewButton);
+		ActionListener a = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				AutorskiRecepti a = new AutorskiRecepti(kn);
+			}
+		};btnNewButton.addActionListener(a);
+		
+		
 		
 		JButton btnNewButton_1 = new JButton("Zaprati");
 		btnNewButton_1.setBounds(245, 427, 89, 23);
 		frameZ.getContentPane().add(btnNewButton_1);
+		ActionListener a1 = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				PlatformaZaKuvare.getInstance().getUlogovaniKorisnik().zapratiKuvara(kn);
+			}
+		};btnNewButton_1.addActionListener(a1);
 		
-		JButton btnNewButton_2 = new JButton("Nazad");
+		
+		
+		JButton btnNewButton_2 = new JButton("Otprati");
 		btnNewButton_2.setBounds(339, 427, 89, 23);
 		frameZ.getContentPane().add(btnNewButton_2);
+		ActionListener a2 = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//PlatformaZaKuvare.getInstance().getUlogovaniKorisnik().otpratiiKuvara(kn);
+			}
+		};btnNewButton_2.addActionListener(a2);
+		
 		
 		frameZ.setVisible(true);
 	}
