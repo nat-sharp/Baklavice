@@ -62,4 +62,9 @@ public class MenadzerKNaloga {
 		//vidi kako je odradjen korisnik kreator, tj njegovo brisanje i zalijepi tu ili vidi u osobama
 		return true;
 	}
+	
+	public boolean proveraKorImena(String ime) {
+		for (KorisnickiNalog k: korNalozi) if (k.getKorIme().equals(ime)) return false;
+		return true;
+	}
 }

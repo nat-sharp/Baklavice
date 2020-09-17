@@ -3,17 +3,27 @@ package GUI;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import Klase.KorisnickiNalog;
+import Klase.Osoba;
+import Klase.Pol;
+import Klase.TipKorisnika;
+import Menadzeri.MenadzerKNaloga;
 
 public class RegistracijaKreatora extends JFrame {
+	
+	private static final long serialVersionUID = -2504356391605407340L;
 	private KorisnickiNalog kn;
 	private JTextField ime = new JTextField();
 	private JTextField prezime = new JTextField();
@@ -115,6 +125,13 @@ public class RegistracijaKreatora extends JFrame {
 		panel.add(new JLabel());
 		
 		ok = new JButton("OK");
+		ok.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				RegistracijaKreatora.this.kraj();
+			}
+		});
 
 		panelOK = new JPanel();
 		panelOK.setLayout(new GridLayout(1, 2));
@@ -140,14 +157,14 @@ public class RegistracijaKreatora extends JFrame {
 		birajAlate.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				OdabirAlata o = new OdabirAlata(RegistracijaKreatora.this, kn);				
+				new OdabirAlata(RegistracijaKreatora.this, kn);				
 			}
 		});
 		
 		birajSastojke.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				OdabirSastojaka o = new OdabirSastojaka(RegistracijaKreatora.this, kn);			
+				new OdabirSastojaka(RegistracijaKreatora.this, kn);			
 			}
 		});
 		
@@ -155,10 +172,48 @@ public class RegistracijaKreatora extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				GlavniProzor g = new GlavniProzor();			
+				new GlavniProzor();			
 			}
 		});			
 	
 		setVisible(true);
+	}
+	
+	private void kraj() {
+		if (!MenadzerKNaloga.getInstance().proveraKorImena(korisickoIme.getText())) 
+			JOptionPane.showMessageDialog(RegistracijaKreatora.this, "Korisnicko ime je zauzeto", "Greska", JOptionPane.ERROR_MESSAGE);
+		else {
+			if(!provjeraDatuma(datumRodjenja.getText())) {
+				JOptionPane.showMessageDialog(RegistracijaKreatora.this, 
+						  "Datum nije dobro unesen. Molim, izmenite ga. :)", "Greska", JOptionPane.ERROR_MESSAGE);
+			}
+			else {
+				String dijeloviDatuma[] = datumRodjenja.getText().split(Pattern.quote("-"));
+				LocalDate ld = LocalDate.of(Integer.parseInt(dijeloviDatuma[2]), Integer.parseInt(dijeloviDatuma[1]), Integer.parseInt(dijeloviDatuma[0]));
+				
+				Klase.Mesto m = new Klase.Mesto(mesto.getSelectedItem().toString(), 12);
+				Osoba o = new Osoba(ime.getText(), prezime.getText(), ld, telefon.getText(), (Pol) pol.getSelectedItem(), m, new ArrayList<KorisnickiNalog>());
+				kn.setKorIme(korisickoIme.getText());
+				kn.setKorisnik(o);
+				kn.setLozinka(sifra.getText());
+				kn.setVrstaKorisnika(TipKorisnika.KREATOR);
+				kn.getKorisnik().dodajKorNalog(kn);
+				
+				MenadzerKNaloga.getInstance().dodajNalog(kn);	
+				new ProfilKorisnika(kn);
+				this.dispose();
+			}			
+		}
+		
+	}
+	
+	private boolean provjeraDatuma(String datum) {
+		String dijeloviDatuma[] = datum.split(Pattern.quote("-"));
+		try {
+			LocalDate.of(Integer.parseInt(dijeloviDatuma[2]), Integer.parseInt(dijeloviDatuma[1]), Integer.parseInt(dijeloviDatuma[0]));
+		}catch(Exception e) {
+			return false;
+		}
+		return true;
 	}
 }

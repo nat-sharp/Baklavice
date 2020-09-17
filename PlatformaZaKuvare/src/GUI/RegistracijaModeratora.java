@@ -146,18 +146,22 @@ public class RegistracijaModeratora extends JFrame {
 						JOptionPane.showMessageDialog(RegistracijaModeratora.this, 
 								  "Datum nije dobro unesen. Molim, izmenite ga. :)", "Greska", JOptionPane.ERROR_MESSAGE);
 					}
-					String dijeloviDatuma[] = datums.split(Pattern.quote("-"));
-					LocalDate ld = LocalDate.of(Integer.parseInt(dijeloviDatuma[2]), Integer.parseInt(dijeloviDatuma[1]), Integer.parseInt(dijeloviDatuma[0]));
-					
-					
-					Klase.Mesto m = new Klase.Mesto(mjs, 12);
-					Osoba o = new Osoba(imes, przs, ld, tels, pols, m, new ArrayList<KorisnickiNalog>());
-					Klase.KorisnickiNalog pp = new Klase.KorisnickiNalog(kis, lozs, Klase.TipKorisnika.MODERATOR, 0, 0, new ArrayList<Alat>(), 
-							  o, new ArrayList<KorisnickiNalog>(),new ArrayList<Kategorija>(),
-							 new ArrayList<Recept>(), new ArrayList<Recept>(), new ArrayList<Ocena>(), new ArrayList<Sastojak>());
-					pp.getKorisnik().getKorNalozi().add(pp);
-					
-					Menadzeri.MenadzerKNaloga.getInstance().dodajNalog(pp);		
+					else {
+						String dijeloviDatuma[] = datums.split(Pattern.quote("-"));
+						LocalDate ld = LocalDate.of(Integer.parseInt(dijeloviDatuma[2]), Integer.parseInt(dijeloviDatuma[1]), Integer.parseInt(dijeloviDatuma[0]));
+						
+						
+						Klase.Mesto m = new Klase.Mesto(mjs, 12);
+						Osoba o = new Osoba(imes, przs, ld, tels, pols, m, new ArrayList<KorisnickiNalog>());
+						Klase.KorisnickiNalog pp = new Klase.KorisnickiNalog(kis, lozs, Klase.TipKorisnika.MODERATOR, 0, 0, new ArrayList<Alat>(), 
+								  o, new ArrayList<KorisnickiNalog>(),new ArrayList<Kategorija>(),
+								 new ArrayList<Recept>(), new ArrayList<Recept>(), new ArrayList<Ocena>(), new ArrayList<Sastojak>());
+						pp.getKorisnik().getKorNalozi().add(pp);
+						
+						Menadzeri.MenadzerKNaloga.getInstance().dodajNalog(pp);		
+						new ProfilModer(pp);
+						RegistracijaModeratora.this.dispose();
+					}
 				}
 			}
 			

@@ -53,7 +53,7 @@ public class ProzorRecepta extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//ProfilKorisnika pk = new ProfilKorisnika(ProzorRecepta.this.recept.getAutor());
+				new ProfilKorisnika(ProzorRecepta.this.recept.getAutor());
 			}
 		});
 		JPanel prvi = new JPanel(new GridLayout(2, 5));
@@ -105,7 +105,7 @@ public class ProzorRecepta extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//KomentariRecepta km = new Komentarirecepata(ProzorRecepta.this.recept);
+				//new KomentariRecepata(ProzorRecepta.this.recept);
 			}
 		});
 		pani3.add(dugmeKom);
