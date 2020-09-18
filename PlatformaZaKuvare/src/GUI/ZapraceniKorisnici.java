@@ -52,7 +52,7 @@ public class ZapraceniKorisnici extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int row = tabela.getSelectedRow();
-				ProfilZaPracenje p = new ProfilZaPracenje(kn);	
+				ProfilZaPracenje p = new ProfilZaPracenje(kn.getPraceniKorisnici().get(row));	
 			}
 		});
 	}

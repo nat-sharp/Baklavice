@@ -20,12 +20,6 @@ public class ProfilZaPracenje  {
 		Image slika;
 		
 		Menadzeri.MenadzerKNaloga mkn = Menadzeri.MenadzerKNaloga.getInstance();
-		/*
-		LocalDate lk = LocalDate.now();
-		Klase.Mesto m = new Klase.Mesto("NS", 12);
-		Klase.Osoba o = new Klase.Osoba("Ante", "Antic", lk, "123", Klase.Pol.MUSKI, m, null);
-		Klase.KorisnickiNalog kn = new Klase.KorisnickiNalog("ante22", "1234", Klase.TipKorisnika.MODERATOR, 22, 10, null, o, null, null, null, null, null,null);
-		*/
 		
 		
 	public ProfilZaPracenje(Klase.KorisnickiNalog kn){
@@ -100,9 +94,7 @@ public class ProfilZaPracenje  {
 		ActionListener a2 = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				PlatformaZaKuvare.getInstance().getUlogovaniKorisnik().otpratiKuvara(kn);
-				JOptionPane.showMessageDialog(null, 
-						  "Otpratili ste korisnika :)", "", JOptionPane.INFORMATION_MESSAGE);
+				Reklama r = new Reklama();				
 			}
 		};btnNewButton_2.addActionListener(a2);
 		
