@@ -24,7 +24,7 @@ public class PrikazSastojaka {
 	private void initialize(Klase.KorisnickiNalog kn) {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 414, 596);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel =  new JLabel(new ImageIcon(System.getProperty("user.dir") + "\\images\\ingredients.png"));

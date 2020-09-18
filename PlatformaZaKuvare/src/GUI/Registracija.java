@@ -41,7 +41,7 @@ public class Registracija extends JFrame{
 		setTitle("Baklavice");
 		setSize(500, 250);
 		setLocationRelativeTo(null);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setResizable(false);
 		
 		korisnickoIme = new JTextField(10);

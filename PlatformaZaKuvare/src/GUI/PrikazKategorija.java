@@ -19,8 +19,10 @@ public class PrikazKategorija extends JFrame {
 	private JTable tabela;
 	private JPanel panel;
 	private JButton prikazi;
+	private List<Kategorija> kategorije;
 
 	public PrikazKategorija(List<Kategorija> kategorije) {
+		this.kategorije = kategorije;
 		setTitle("Zapraćene kategorije");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -47,7 +49,7 @@ public class PrikazKategorija extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int row = tabela.getSelectedRow();
-				ProfilKategorije p = new ProfilKategorije();	
+				ProfilKategorije p = new ProfilKategorije(PrikazKategorija.this.kategorije.get(row));	
 			}
 		});
 	}

@@ -20,7 +20,7 @@ public class GlavniProzor extends JFrame {
 	public GlavniProzor() {
 		setTitle("Platforma za kuvare");
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(400, 400);
 		setLocationRelativeTo(null);
 		JLabel background = new JLabel(new ImageIcon(System.getProperty("user.dir") + "\\images\\bg.jpg"));

@@ -48,7 +48,7 @@ public class TLKFrejm extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				int row = TLKFrejm.this.tabela.getSelectedRow();
 				if(row!= -1) {
-					//ProfilKorisnika pk = new ProfilKorisnika(TLKFrejm.this.tlk.getKorisnici().get(row));
+					ProfilZaPracenje pp = new ProfilZaPracenje(TLKFrejm.this.tlk.getKorisnici().get(row));
 				}else {
 					JOptionPane.showMessageDialog(null, "Nijedan element nije selektovan");
 				}

@@ -53,7 +53,6 @@ public class KomentariRecepta extends JFrame {
 		TabKomentariRecepta tabKR = new TabKomentariRecepta(komentari);
 		tabela = new JTable(tabKR);
 		tabela.setAutoCreateRowSorter(true);
-		tabela.setRowSelectionInterval(0, 0);
 		JScrollPane sp = new JScrollPane(tabela);
 		add(sp);
 		

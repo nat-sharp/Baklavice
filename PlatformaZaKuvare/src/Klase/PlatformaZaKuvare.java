@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import Menadzeri.MenadzerKNaloga;
 import Menadzeri.MenadzerRecepta;
@@ -11,8 +12,10 @@ import Menadzeri.MenadzerRecepta;
 public class PlatformaZaKuvare {
 	
 	private KorisnickiNalog ulogovaniKorisnik;
+	private List<Mesto> mesta;
 	
 	private PlatformaZaKuvare() {
+		mesta = new ArrayList<Mesto>();
 	}
 	
 	public static PlatformaZaKuvare instance = null;
@@ -24,6 +27,19 @@ public class PlatformaZaKuvare {
 		}
 		return instance;
 	}
+
+	public List<Mesto> getMesta() {
+		return mesta;
+	}
+
+	public void setMesta(List<Mesto> mesta) {
+		this.mesta = mesta;
+	}
+	
+	public void dodajMesto(Mesto m) {
+		this.mesta.add(m);
+	}
+
 	
 	public KorisnickiNalog getUlogovaniKorisnik() {
 		return ulogovaniKorisnik;
@@ -34,10 +50,13 @@ public class PlatformaZaKuvare {
 
 	//ovo trebamo dodatno razraditi
 	//generisanje top liste kreatora, na osnovu broja postavljenih recepata, komentara, nesto na taj fazon
-	public TopListaKreatora generisanjeTLK(int brojBiranja) {
+	public void generisanjeTLK(int brojBiranja) {
 		HashMap<Integer, Double> mapa = new HashMap<Integer, Double>();
 		
 		for(KorisnickiNalog kk : MenadzerKNaloga.getInstance().getKorNalozi()) {
+			if(kk.getVrstaKorisnika() == Klase.TipKorisnika.MODERATOR) {
+				continue;
+			}
 			int indeks = MenadzerKNaloga.getInstance().getKorNalozi().indexOf(kk);
 			double broj1 = kk.getBrPratioca() + kk.getPraceniKorisnici().size()/3 + kk.getPraceneKategorije().size()/0.3;
 			broj1 += kk.getAutorskiRecepti().size()*2 + kk.getObelezeniRecepti().size() + kk.getOcenjeniRecepti().size() * 3;
@@ -54,30 +73,34 @@ public class PlatformaZaKuvare {
 		
 		List<KorisnickiNalog>topLista = new ArrayList<KorisnickiNalog>();
 		for(int j = 0; j<brojBiranja; j++) {
-			for(int i = 0; i<mapa.size(); i++) {
-				if(max<mapa.get(i)) {
-					max = mapa.get(i);
-					indeks2 = i;
+			for( Map.Entry<Integer, Double> e : mapa.entrySet()) {
+				if(max < e.getValue()) {
+					max = e.getValue();
+					indeks2 = e.getKey();
 				}
-			}mapa.remove(indeks2);
-			//ovdje bilo za medalje
+			}
+			max = Double.NEGATIVE_INFINITY;
+			mapa.remove(indeks2);
 			MenadzerKNaloga.getInstance().getKorNalozi().get(indeks2).setBrMedalja(MenadzerKNaloga.getInstance().getKorNalozi().get(indeks2).getBrMedalja()+1);
 			topLista.add(MenadzerKNaloga.getInstance().getKorNalozi().get(indeks2));
 		}
-		TopListaKreatora vrati = new TopListaKreatora(topLista);
 		
-		return vrati;
+		TopListaKreatora vrati = new TopListaKreatora(topLista);
+		Menadzeri.MenadzerTLK.getInstance().dodajTopListuKreatora(vrati);
+		
 	}
 	
 	
 	
 	//generisanje top liste recepata
 	//ovo bi trebalo na osnovu ocjena, mozda broja komentara nesto iskombinovati
-	public TopListaRecepata generisanjeTLR(int brojBiranja) {
+	public void generisanjeTLR(int brojBiranja) {
 		HashMap<Integer, Double>mapa = new HashMap<Integer, Double>();
 		ArrayList<Recept> recepti = (ArrayList<Recept>) MenadzerRecepta.getInstance().getRecepti();
+		int indeks;
 		for(Recept r : recepti) {
-			int indeks = recepti.indexOf(r);
+			System.out.print(r.getNazivRec());
+			indeks = recepti.indexOf(r);
 			int brZvjezdica = 0;
 			int brOcjena = r.getOcene().size();
 			int lajk = 0;
@@ -93,34 +116,55 @@ public class PlatformaZaKuvare {
 				}komentari+=o.getKomentari().size();
 			}
 			double finalnaSlika = brZvjezdica/brOcjena + lajk - dislajk + komentari +oModeratora;
+			//System.out.println("INT " + indeks + " DOUBLE "+ finalnaSlika);
 			mapa.put(indeks, finalnaSlika);
 		}
-		
+		for( Map.Entry<Integer, Double> e : mapa.entrySet()) {
+			System.out.println( "Poc" + e.getKey() + " INTEGER" + e.getValue() + "DOULBEEE");
+		}
 		//e sad trebamo naci max
 		double max = Double.NEGATIVE_INFINITY;
 		int indeks2 = 0;
 		
+		
+	//	System.out.println("POCETNA" +mapa.size());
 		List<Recept>topLista = new ArrayList<Recept>();
 		for(int j = 0; j<brojBiranja; j++) {
-			for(int i = 0; i<mapa.size(); i++) {
-				if(max<mapa.get(i)) {
-					max = mapa.get(i);
-					indeks2 = i;
+		//	System.out.println("IZMEDJU " + mapa.size());
+			for( Map.Entry<Integer, Double> e : mapa.entrySet()) {
+				
+				if(max < e.getValue()) {
+					max = e.getValue();
+					indeks2 = e.getKey();
+					//System.out.println(indeks2 + " IND");
 				}
-			}mapa.remove(indeks2);
+				
+				
+			}
+			max = Double.NEGATIVE_INFINITY;
+		//	System.out.print(indeks2);
+			mapa.remove(indeks2);
+			
+		//	System.out.println(mapa.size());
 			recepti.get(indeks2).setBrMedalja(recepti.get(indeks2).getBrMedalja()+1);
-			topLista.add(recepti.get(indeks2));
+			if(!topLista.contains(recepti.get(indeks2))) {
+				topLista.add(recepti.get(indeks2));
+			}
+			
+		}
+		for (Recept r : topLista) {
+			System.out.println("\n\nEEJ " + r.getNazivRec());
 		}
 		TopListaRecepata vrati = new TopListaRecepata(topLista);
-		return vrati;
+		Menadzeri.MenadzerTLR.getInstance().dodajTopListuRecepata(vrati);
 		
 	}
 	
 	
 	/////////////////////////////////////////  PRETRAGE  ////////////////////////////////////////////////
 	public List<Recept> pretraga(List<Alat>kuhinjskaOprema, String naziv, Tezina tezina, int duzina, List<Sastojak>sastojci){
-		List<Recept> vrati = new ArrayList<Recept>();
-		List<Recept> recepti = MenadzerRecepta.getInstance().getRecepti();
+		ArrayList<Recept> vrati = new ArrayList<Recept>();
+		ArrayList<Recept> recepti = MenadzerRecepta.getInstance().getRecepti();
 		if(kuhinjskaOprema != null) {
 			for(Recept r: recepti) {
 				boolean imaSve = true;
@@ -185,7 +229,7 @@ public class PlatformaZaKuvare {
 		}
 		if(duzina != 0) {
 			for(Recept r:recepti) {
-				if(r.getDuzinaMin()<=maxDuz && r.getDuzinaMin()>= minDuz) {
+				if(r.getDuzinaMin() >= minDuz && r.getDuzinaMin()<= maxDuz ) {
 					if(!vrati.contains(r)) {
 						vrati.add(r);
 					}
@@ -212,6 +256,6 @@ public class PlatformaZaKuvare {
 			}			
 		}
 		
-		return (ArrayList<Recept>) vrati;
+		return vrati;
 	}	
 }

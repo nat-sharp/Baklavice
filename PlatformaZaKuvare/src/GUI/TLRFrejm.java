@@ -20,8 +20,10 @@ public class TLRFrejm extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JTable tabela;
+	private TopListaRecepata tlr;
 	
 	public TLRFrejm(TopListaRecepata tlr) {
+		this.tlr = tlr;
 		this.setTitle("TOP LISTA RECEPATA      DATUM: "+ tlr.getDatum().toString());
 		this.setSize(600,600);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -48,11 +50,11 @@ public class TLRFrejm extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				int row = TLRFrejm.this.tabela.getSelectedRow();
 				if(row != -1) {
-					String naz = (String) TLRFrejm.this.tabela.getModel().getValueAt(row, 0);
-					String korIme = (String) TLRFrejm.this.tabela.getModel().getValueAt(row, 1);
+					//String naz = (String) TLRFrejm.this.tabela.getModel().getValueAt(row, 0);
+				//	String korIme = (String) TLRFrejm.this.tabela.getModel().getValueAt(row, 1);
 					
-					Recept r = MenadzerRecepta.getInstance().getReceptByInfo(naz, korIme);
-					//ProzorRecepta pr = new ProzorRecepta(r);
+					Recept r = TLRFrejm.this.tlr.getRecepti().get(row);
+					ProzorRecepta pr = new ProzorRecepta(r);
 				}else {
 					JOptionPane.showMessageDialog(null, "Nijedan element nije selektovan");
 				}

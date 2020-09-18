@@ -27,7 +27,7 @@ public class OpcijeKRecepti {
 	private void initialize(Klase.KorisnickiNalog kn) {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 501, 500);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setLocationRelativeTo(null);
 		
@@ -44,7 +44,6 @@ public class OpcijeKRecepti {
 		ActionListener a1 = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
 				AutorskiRecepti a = new AutorskiRecepti(kn);
 			}
 		};btnNewButton.addActionListener(a1);
@@ -58,7 +57,6 @@ public class OpcijeKRecepti {
 		ActionListener a2 = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
 				PrikazObelezenihRecepata p = new PrikazObelezenihRecepata(kn);
 			}
 		};btnNewButton_1.addActionListener(a2);
@@ -70,7 +68,6 @@ public class OpcijeKRecepti {
 		ActionListener a3 = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
 				DodavanjeRecepta d = new DodavanjeRecepta();
 			}
 		};btnNewButton_3.addActionListener(a3);
@@ -83,8 +80,7 @@ public class OpcijeKRecepti {
 		ActionListener a4 = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				//ZapraceniKorisnici k = new ZapraceniKorisnici(kn); otkome
+				ZapraceniKorisnici k = new ZapraceniKorisnici(kn);
 			}
 		};btnNewButton_5.addActionListener(a4);
 		
@@ -96,8 +92,8 @@ public class OpcijeKRecepti {
 		ActionListener a5 = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
 				ProfilKorisnika p = new ProfilKorisnika(kn);
+				OpcijeKRecepti.this.frame.dispose();
 			}
 		};btnNewButton_6.addActionListener(a5);
 		
@@ -109,7 +105,6 @@ public class OpcijeKRecepti {
 		ActionListener a6 = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
 				PretragaProzor p = new PretragaProzor();
 			}
 		};btnNewButton_4.addActionListener(a6);
@@ -122,8 +117,7 @@ public class OpcijeKRecepti {
 		ActionListener a8 = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				//ZapraceneKategorije z = new ZapraceneKategorije(kn);
+				PrikazKategorija z = new PrikazKategorija(kn.getPraceneKategorije());
 			}
 		};btnNewButton_2.addActionListener(a8);
 		
@@ -134,8 +128,7 @@ public class OpcijeKRecepti {
 		ActionListener a7 = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				//PrikazKategorije p = new PrikazKategorije(mmk.getKategorije());
+				PrikazKategorija p = new PrikazKategorija(mmk.getKategorije());
 			}
 		};btnNewButton_7.addActionListener(a7);
 		

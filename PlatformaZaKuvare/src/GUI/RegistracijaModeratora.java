@@ -4,6 +4,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -62,7 +63,9 @@ public class RegistracijaModeratora extends JFrame {
 		this.setSize(700, 600);
 		this.setLocationRelativeTo(null);
 		
-		
+
+		this.mesto = new JComboBox<Klase.Mesto>();
+		for(Mesto m : PlatformaZaKuvare.getInstance().getMesta()) mesto.addItem(m);
 			
 		
 		panel = new JPanel();
@@ -147,8 +150,7 @@ public class RegistracijaModeratora extends JFrame {
 								  "Datum nije dobro unesen. Molim, izmenite ga. :)", "Greska", JOptionPane.ERROR_MESSAGE);
 					}
 					else {
-						String dijeloviDatuma[] = datums.split(Pattern.quote("-"));
-						LocalDate ld = LocalDate.of(Integer.parseInt(dijeloviDatuma[2]), Integer.parseInt(dijeloviDatuma[1]), Integer.parseInt(dijeloviDatuma[0]));
+						LocalDate ld = LocalDate.parse(datums, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 						
 						
 						Klase.Mesto m = new Klase.Mesto(mjs, 12);
@@ -203,7 +205,8 @@ public class RegistracijaModeratora extends JFrame {
 	private boolean provjeraDatuma(String datum) {
 		String dijeloviDatuma[] = datum.split(Pattern.quote("-"));
 		try {
-			LocalDate ld = LocalDate.of(Integer.parseInt(dijeloviDatuma[2]), Integer.parseInt(dijeloviDatuma[1]), Integer.parseInt(dijeloviDatuma[0]));
+			LocalDate.parse(datum, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+			LocalDate.of(Integer.parseInt(dijeloviDatuma[2]), Integer.parseInt(dijeloviDatuma[1]), Integer.parseInt(dijeloviDatuma[0]));
 		}catch(Exception e) {
 			return false;
 		}

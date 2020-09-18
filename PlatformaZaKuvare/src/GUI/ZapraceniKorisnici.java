@@ -26,7 +26,7 @@ public class ZapraceniKorisnici extends JFrame {
 	private JButton prikazi;
 
 	public ZapraceniKorisnici(KorisnickiNalog kn) {
-		setTitle("Zapraćeni korisnici");
+		setTitle("Zapraceni korisnici");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setSize(600, 300);
@@ -39,7 +39,7 @@ public class ZapraceniKorisnici extends JFrame {
 		JScrollPane sp = new JScrollPane(tabela);
 		add(sp);		
 		
-		prikazi = new JButton("Prikaži");
+		prikazi = new JButton("Prikazi");
 		panel = new JPanel(new GridLayout(1,3));
 		panel.add(new JLabel());
 		panel.add(new JLabel());

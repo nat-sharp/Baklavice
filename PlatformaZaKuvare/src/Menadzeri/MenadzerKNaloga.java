@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import Klase.Alat;
 import Klase.Kategorija;
 import Klase.KorisnickiNalog;
+import Klase.Ocena;
 import Klase.Recept;
+import Klase.Sastojak;
 import Klase.TipKorisnika;
 import Klase.TopListaKreatora;
 
@@ -14,11 +17,12 @@ public class MenadzerKNaloga {
 	//osoba, TLK, kategorija, korNalog, PZK
 	public static MenadzerKNaloga instanca;
 	private List<KorisnickiNalog> korNalozi;
-	public KorisnickiNalog NN = new KorisnickiNalog("NN", "", TipKorisnika.NN, 0, 0,
-			null, MenadzerOsoba.getInstance().NN, null, null, null, null, null, null);
+
+	public KorisnickiNalog NN;
 	
 	private MenadzerKNaloga() {
 		korNalozi = new ArrayList<KorisnickiNalog>();
+		NN = new KorisnickiNalog("NN", "p", TipKorisnika.NN, 0, 0, new ArrayList<Alat>(), MenadzerOsoba.getInstance().NN, new ArrayList<KorisnickiNalog>(), new ArrayList<Kategorija>(), new ArrayList<Recept>(), new ArrayList<Recept>(), new ArrayList<Ocena>(), new ArrayList<Sastojak>());
 	}
 	public static MenadzerKNaloga getInstance() {
 		if (instanca == null) {

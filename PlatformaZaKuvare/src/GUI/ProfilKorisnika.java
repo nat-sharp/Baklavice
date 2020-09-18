@@ -41,7 +41,7 @@ public class ProfilKorisnika {
 		frame.setBounds(100, 100, 450, 741);
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setTitle("Vas profil :)");
 		
@@ -169,7 +169,12 @@ public class ProfilKorisnika {
 		ActionListener tlr = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				TLRFrejm t = new TLRFrejm(Menadzeri.MenadzerTLR.getInstance().getTopListeRecepata().get(-1));
+				if (Menadzeri.MenadzerTLR.getInstance().getTopListeRecepata().isEmpty()) {
+					JOptionPane.showConfirmDialog(null, "Nema izgenerisane top liste");
+				}else {
+					TLRFrejm t = new TLRFrejm(Menadzeri.MenadzerTLR.getInstance().getTopListeRecepata().get(0));
+					
+				}
 			}
 		};btnNewButton_3.addActionListener(tlr);
 		
@@ -183,7 +188,12 @@ public class ProfilKorisnika {
 		ActionListener tlk = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				TLKFrejm m = new TLKFrejm(Menadzeri.MenadzerTLK.getInstance().getTopListeKreatora().get(-1));
+				if (Menadzeri.MenadzerTLK.getInstance().getTopListeKreatora().isEmpty()) {
+					JOptionPane.showConfirmDialog(null, "Nema izgenerisane top liste");
+				}else {
+					TLKFrejm m = new TLKFrejm(Menadzeri.MenadzerTLK.getInstance().getTopListeKreatora().get(0));
+
+				}
 			}
 		};btnNewButton_4.addActionListener(tlk);
 		

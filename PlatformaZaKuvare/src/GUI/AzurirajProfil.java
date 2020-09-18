@@ -32,7 +32,7 @@ public class AzurirajProfil {
 		frameA = new JFrame();
 		frameA.setBounds(100, 100, 450, 694);
 		frameA.setLocationRelativeTo(null);
-		frameA.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frameA.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frameA.getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel_9 = new JLabel(new ImageIcon(System.getProperty("user.dir") + "\\images\\person.png"));

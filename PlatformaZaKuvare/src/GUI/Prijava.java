@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -40,7 +41,7 @@ public class Prijava extends JFrame{
 		setTitle("Baklavice");
 		setSize(500, 250);
 		setLocationRelativeTo(null);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setResizable(false);
 		
 		korisnickoIme = new JTextField(10);
@@ -84,20 +85,25 @@ public class Prijava extends JFrame{
 				String korisnickoIme = Prijava.this.korisnickoIme.getText().trim();
 				String lozinka = Prijava.this.sifra.getText().trim();
 				
-				/*U sustini sad nam treba neka baza podataka, mapa, lista, koja ce sadrzati sve te 
-				 * ucesnike da provjerimo da li imamo lika sa korisnickim imenom i lozinkom istim 
-				 * kao sto je uneseno*/
-				
-				
-				
-				//Ovo mozemo iskoristiti ukoliko je neko ukucao pogresnu lozinku ili korisnicko ime
-				/*
-				 * JOptionPane.showMessageDialog(Registracija.this, "Unijeli ste pogresnu lozinku!\n         Pokusajte ponovo!",
-								"Obavestenje", JOptionPane.INFORMATION_MESSAGE);
-				 *JOptionPane.showMessageDialog(Registracija.this, "Unijeli ste pogresno korisnicko ime!\n         Pokusajte ponovo!",
-							"Obavestenje", JOptionPane.INFORMATION_MESSAGE); 
-				 */
-				
+				boolean flag = false;
+				for(Klase.KorisnickiNalog kn :Menadzeri.MenadzerKNaloga.getInstance().getKorNalozi()) {
+					if(kn.getKorIme().equalsIgnoreCase(korisnickoIme) && kn.getLozinka().equalsIgnoreCase(lozinka)) {
+						Klase.PlatformaZaKuvare.getInstance().setUlogovaniKorisnik(kn);
+						if(kn.getVrstaKorisnika().equals(Klase.TipKorisnika.KREATOR)) {
+							flag = true;
+							Prijava.this.dispose();
+							ProfilKorisnika p = new ProfilKorisnika(kn);	
+						}else {
+							flag = true;
+							Prijava.this.dispose();
+							ProfilModer m = new ProfilModer(kn);
+						}
+					}
+				}
+				if(!flag) {
+					JOptionPane.showMessageDialog(Prijava.this,
+							  "Korisnicko ime ili lozinka ne postoji. :(", "Greska", JOptionPane.ERROR_MESSAGE);	
+				}			 
 			}
 		}; prijavi.addActionListener(listenerPrijavi);
 		

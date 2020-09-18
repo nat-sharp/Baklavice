@@ -135,7 +135,7 @@ public class PretragaProzor extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				OdabirSastojaka o = new OdabirSastojaka(PretragaProzor.this, null, null);
+				OdabirSastojaka o = new OdabirSastojaka(PretragaProzor.this, null, new ArrayList<Sastojak>());
 			}
 			
 		});
@@ -163,7 +163,7 @@ public class PretragaProzor extends JFrame{
 	}
 
 	private int getMin() {
-		JRadioButton moj = (JRadioButton) this.grupa.getSelection();
+		/* moj = (JRadioButton) this.grupa.getSelection();
 		if(moj.equals(r1)) {
 			return 1;
 		}else if(moj.equals(r2)) {
@@ -173,6 +173,18 @@ public class PretragaProzor extends JFrame{
 		}else if(moj.equals(r4)) {
 			return 45;
 		}else if(moj.equals(r5)) {
+			return 60;
+		}*/
+		
+		if(r1.isSelected()) {
+			return 1;
+		}else if(r2.isSelected()) {
+			return 15;
+		}else if(r3.isSelected()) {
+			return 30;
+		}else if(r4.isSelected()) {
+			return 45;
+		}else if(r5.isSelected()) {
 			return 60;
 		}
 		return 0;

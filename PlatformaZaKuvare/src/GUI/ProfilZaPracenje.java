@@ -9,6 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import Klase.PlatformaZaKuvare;
@@ -30,7 +31,7 @@ public class ProfilZaPracenje  {
 	public ProfilZaPracenje(Klase.KorisnickiNalog kn){
 		frameZ = new JFrame();
 		frameZ.setBounds(100, 100, 450, 496);
-		frameZ.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frameZ.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frameZ.getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel_1 = new JLabel();
@@ -86,6 +87,8 @@ public class ProfilZaPracenje  {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				PlatformaZaKuvare.getInstance().getUlogovaniKorisnik().zapratiKuvara(kn);
+				JOptionPane.showMessageDialog(null, 
+						  "Zapratili ste korisnika :)", "", JOptionPane.INFORMATION_MESSAGE);
 			}
 		};btnNewButton_1.addActionListener(a1);
 		
@@ -97,7 +100,9 @@ public class ProfilZaPracenje  {
 		ActionListener a2 = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//PlatformaZaKuvare.getInstance().getUlogovaniKorisnik().otpratiiKuvara(kn);
+				PlatformaZaKuvare.getInstance().getUlogovaniKorisnik().otpratiKuvara(kn);
+				JOptionPane.showMessageDialog(null, 
+						  "Otpratili ste korisnika :)", "", JOptionPane.INFORMATION_MESSAGE);
 			}
 		};btnNewButton_2.addActionListener(a2);
 		

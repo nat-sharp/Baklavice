@@ -43,11 +43,11 @@ public class OdabirSastojaka extends JFrame {
 		JPanel glavni = new JPanel(new GridLayout(sastojci.size(), 1));
 		for (Sastojak s : sastojci) {
 			JCheckBox c = new JCheckBox(s.getNaziv());
-			if(!stari.equals(null)) {
+			/*if( !stari.isEmpty()) {
 				if(stari.contains(s)) {
 					c.setSelected(true);
 				}
-			}
+			}*/
 			lista.add(c);
 			glavni.add(c);
 		}

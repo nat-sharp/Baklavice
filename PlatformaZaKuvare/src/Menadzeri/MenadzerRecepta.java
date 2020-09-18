@@ -13,8 +13,8 @@ import Klase.TopListaRecepata;
 public class MenadzerRecepta {
 	//TLR, kategorija, recept*2, pzk*2
 	private static MenadzerRecepta instanca;
-	private List<Recept> receptiNaCekanju;
-	private List<Recept> recepti;
+	private ArrayList<Recept> receptiNaCekanju;
+	private ArrayList<Recept> recepti;
 	private Recept NNRecept;
 	
 	public Recept getNNRecept() {
@@ -36,15 +36,11 @@ public class MenadzerRecepta {
 		return instanca;
 	}
 	
-	public List<Recept> getReceptiNaCekanju() {
+	public ArrayList<Recept> getReceptiNaCekanju() {
 		return receptiNaCekanju;
 	}
 	
-	public List<Recept> getNepromenljiviReceptiNaCekanju() {
-		return Collections.unmodifiableList(receptiNaCekanju);
-	}
-	
-	public void setReceptiNaCekanju(List<Recept> r) {
+	public void setReceptiNaCekanju(ArrayList<Recept> r) {
 		this.recepti = r;
 	}
 	
@@ -60,14 +56,11 @@ public class MenadzerRecepta {
 		return true;
 	}
 	
-	public List<Recept> getRecepti() {
+	public ArrayList<Recept> getRecepti() {
 		return recepti;
 	}
-	public List<Recept> getNepromenljiviRecepti() {
-		return Collections.unmodifiableList(recepti);
-	}
 	
-	public void setRecepti(List<Recept> recepti) {
+	public void setRecepti(ArrayList<Recept> recepti) {
 		this.recepti = recepti;
 	}
 	

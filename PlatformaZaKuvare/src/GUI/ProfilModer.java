@@ -42,7 +42,7 @@ public class ProfilModer {
 	private void initialize(Klase.KorisnickiNalog kn) {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 639);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		lblNewLabel = new JLabel();
@@ -112,8 +112,8 @@ public class ProfilModer {
 		ActionListener a = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.setVisible(false);
-				//PrikazRecepataNaCekanju p = new PrikazRecepataNaCekanju();
+				//frame.setVisible(false);
+				PrikazRecepataNaCekanju p = new PrikazRecepataNaCekanju();
 			}
 		};
 		btnNewButton.addActionListener(a);
@@ -147,7 +147,7 @@ public class ProfilModer {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//frame.setVisible(false);
-				PlatformaZaKuvare.getInstance().generisanjeTLR(3);
+				PlatformaZaKuvare.getInstance().generisanjeTLR(2);
 				JOptionPane.showMessageDialog(ProfilModer.this.frame, 
 						  "Izgenerisali ste top listu recepata. :)", "", JOptionPane.INFORMATION_MESSAGE);
 			}

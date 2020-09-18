@@ -26,7 +26,7 @@ public class PrikaziAlate {
 	private void initialize(Klase.KorisnickiNalog kn) {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 400, 550);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setLocationRelativeTo(null);
 		frame.setTitle("Odbrana projekta");
